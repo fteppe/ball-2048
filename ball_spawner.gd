@@ -10,10 +10,6 @@ func _ready():
 	generate_ball()
 	pass # Replace with function body.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func generate_ball():
 	if last_dropped_ball:
 		last_dropped_ball.body_entered.disconnect(ball_collided)
@@ -22,7 +18,7 @@ func generate_ball():
 	self.add_child(held_ball)
 	held_ball.process_mode = Node.PROCESS_MODE_DISABLED
 
-func ball_collided(body):
+func ball_collided(_body):
 	generate_ball()
 	
 func _unhandled_input(event):

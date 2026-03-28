@@ -4,6 +4,7 @@ class_name Ball
 @export var rank : int = 1
 @export var rank_colors : Array[Color]
 
+
 var size : int 
 var initial_rotation : float
 
@@ -19,7 +20,8 @@ func update_size_from_rank():
 	$Visuals/Sprite2D.modulate = rank_colors[clamp(rank - 1, 0 , rank_colors.size())]
 	self.set_mass(radius_from_rank * radius_from_rank)
 
-func rank_up():
+func rank_up(other_ball : Ball):
+	self.global_position = (self.global_position + other_ball.global_position) * 0.5
 	rank += 1
 	update_size_from_rank()
 
@@ -37,10 +39,11 @@ func _process(delta):
 	pass
 
 
+
 func _on_body_entered(body : Variant):
 	if body is Ball:
 		var ball : Ball = body as Ball
 		if ball.rank == self.rank:
-			rank_up()
+			rank_up(ball)
 			ball.queue_free()
 	pass # Replace with function body.
