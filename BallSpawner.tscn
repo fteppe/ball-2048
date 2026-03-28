@@ -13,14 +13,12 @@ noise = SubResource("FastNoiseLite_odsjh")
 seamless = true
 normalize = false
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_l7i2t"]
-
 [node name="BallSpawner" type="Node2D" unique_id=1389751439]
 script = ExtResource("1_l7i2t")
 
 [node name="Line2D" type="Line2D" parent="." unique_id=1434716319]
 texture_repeat = 2
-points = PackedVector2Array(0, 0, 0, 700)
+points = PackedVector2Array(0, 0, 0, 620)
 width = 5.0
 texture = SubResource("NoiseTexture2D_odsjh")
 texture_mode = 1
@@ -28,9 +26,3 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="SpawnPoint" type="Node2D" parent="." unique_id=1692867347]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=78337128]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1322504273]
-position = Vector2(0, -14)
-shape = SubResource("RectangleShape2D_l7i2t")
