@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://bv4vpeatpwccj"]
+
+[ext_resource type="Script" uid="uid://idlfv5j6fanp" path="res://main_map.gd" id="1_ifu8d"]
+[ext_resource type="PhysicsMaterial" uid="uid://cw1s4rm6ufa6y" path="res://ground_phy_material.tres" id="2_x4u1r"]
+[ext_resource type="PackedScene" uid="uid://cxmrdjcdiqobc" path="res://BallSpawner.tscn" id="3_cccdv"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_x0drn"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_cccdv"]
+frequency = 0.02
+fractal_gain = 0.53
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_knh7k"]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_cccdv")
+as_normal_map = true
+
+[node name="Mainmap" type="Node2D" unique_id=151565199]
+script = ExtResource("1_ifu8d")
+
+[node name="Left" type="StaticBody2D" parent="." unique_id=437479823]
+position = Vector2(0, 285)
+rotation = 1.5707964
+physics_material_override = ExtResource("2_x4u1r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left" unique_id=1592641092]
+position = Vector2(-1.3113416e-07, -3)
+shape = SubResource("WorldBoundaryShape2D_x0drn")
+
+[node name="Ground" type="StaticBody2D" parent="." unique_id=311077774]
+position = Vector2(311, 646)
+physics_material_override = ExtResource("2_x4u1r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=849763620]
+shape = SubResource("WorldBoundaryShape2D_x0drn")
+
+[node name="Right" type="StaticBody2D" parent="." unique_id=477366918]
+position = Vector2(533, 313)
+rotation = -1.5707964
+physics_material_override = ExtResource("2_x4u1r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right" unique_id=131518884]
+shape = SubResource("WorldBoundaryShape2D_x0drn")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1255627473]
+position = Vector2(268.00003, 255)
+scale = Vector2(1.0311354, 1.5357156)
+texture = SubResource("NoiseTexture2D_knh7k")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1568816171]
+position = Vector2(292, 262)
+zoom = Vector2(0.795, 0.795)
+
+[node name="BallSpawner" parent="." unique_id=1389751439 instance=ExtResource("3_cccdv")]
+position = Vector2(272, 3)
