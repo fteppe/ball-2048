@@ -15,7 +15,7 @@ func generate_ball():
 		last_dropped_ball.body_entered.disconnect(ball_collided)
 	last_dropped_ball = null
 	held_ball = ball_scene.instantiate()
-	self.add_child(held_ball)
+	self.call_deferred("add_child", held_ball)
 	held_ball.process_mode = Node.PROCESS_MODE_DISABLED
 
 func ball_collided(_body):
@@ -36,8 +36,8 @@ func _unhandled_input(event):
 			self.get_parent().add_child(last_dropped_ball)
 
 func get_held_ball_radius() :
-	if last_dropped_ball:
-		return last_dropped_ball.get_radius()
+	if held_ball:
+		return held_ball.get_radius()
 	return 0.
 
 func get_is_held():

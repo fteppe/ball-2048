@@ -19,10 +19,14 @@ run/main_scene="uid://bv4vpeatpwccj"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameModeBall="*uid://cyr61qfur7l5w"
+
 [display]
 
 window/size/viewport_width=500
-window/size/viewport_height=1200
+window/size/viewport_height=980
 
 [physics]
 

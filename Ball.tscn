@@ -9,12 +9,14 @@ bounce = 0.1
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pa54t"]
 resource_local_to_scene = true
+radius = 50.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_lww6v"]
 font_size = 50
 
-[node name="Ball" type="RigidBody2D" unique_id=1929847300]
+[node name="Ball" type="RigidBody2D" unique_id=1929847300 groups=["balls"]]
 physics_material_override = SubResource("PhysicsMaterial_lww6v")
+continuous_cd = 1
 contact_monitor = true
 max_contacts_reported = 5
 script = ExtResource("1_gk6bx")
@@ -27,15 +29,15 @@ shape = SubResource("CircleShape2D_pa54t")
 
 [node name="Sprite2D" type="Sprite2D" parent="Visuals" unique_id=1224878001]
 rotation = 1.7348574
-scale = Vector2(0.08102607, -0.079349145)
+scale = Vector2(0.39925748, -0.4090889)
 texture = ExtResource("2_lww6v")
 
 [node name="Label" type="Label" parent="Visuals" unique_id=903129506]
-offset_left = -11.0
-offset_top = -8.0
-offset_right = 70.0
-offset_bottom = 61.0
-scale = Vector2(0.25, 0.25)
+offset_left = -35.0
+offset_top = -34.0
+offset_right = 46.0
+offset_bottom = 35.0
+scale = Vector2(0.8361394, 0.9542944)
 offset_transform_enabled = true
 theme_override_font_sizes/font_size = 50
 text = "  1  "

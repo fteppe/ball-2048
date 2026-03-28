@@ -1,8 +1,9 @@
 extends Node2D
-
+class_name MainMap
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	GameModeBall.ball_created.connect(ball_created)
 	pass # Replace with function body.
 
 
@@ -11,6 +12,9 @@ func _process(delta):
 	pass
 
 var previous_mouse_pos_x : float
+
+func ball_created(ball : Ball):
+	print("Ball created rank ", ball.rank)
 
 func _unhandled_input(event):
 	var current_mouse_pos = $BallSpawner.get_global_mouse_position().x

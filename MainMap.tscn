@@ -21,7 +21,7 @@ gradient = SubResource("Gradient_cccdv")
 [node name="Mainmap" type="Node2D" unique_id=151565199]
 script = ExtResource("1_ifu8d")
 
-[node name="Background2" type="Sprite2D" parent="." unique_id=1539363545 groups=["balls"]]
+[node name="Background2" type="Sprite2D" parent="." unique_id=1539363545]
 position = Vector2(307.0001, 267.9999)
 rotation = 3.1415925
 scale = Vector2(21.515491, 27.692846)
@@ -62,10 +62,10 @@ position = Vector2(269, 325)
 zoom = Vector2(0.865, 0.865)
 
 [node name="BallSpawner" parent="." unique_id=1389751439 instance=ExtResource("3_cccdv")]
-position = Vector2(272, 3)
+position = Vector2(268, 3)
 
 [node name="RightSpawner" type="Node2D" parent="." unique_id=2055569934]
 position = Vector2(531, 0)
 
 [node name="LeftSpawner" type="Node2D" parent="." unique_id=1135056190]
-position = Vector2(7, 0)
+position = Vector2(6, 0)
