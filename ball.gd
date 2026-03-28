@@ -7,10 +7,13 @@ class_name Ball
 var size : int 
 var initial_rotation : float
 
+func get_radius():
+	return ($CollisionShape2D.shape as CircleShape2D).radius
+
 func update_size_from_rank():
 	size = pow(2, rank - 1)
 	$Visuals/Label.text = str(size)
-	var radius_from_rank = pow(sqrt(2), rank - 1) * 4
+	var radius_from_rank = sqrt(rank) * 2
 	($CollisionShape2D.shape as CircleShape2D).radius = radius_from_rank * 10
 	$Visuals.scale = Vector2(radius_from_rank, radius_from_rank)
 	$Visuals/Sprite2D.modulate = rank_colors[clamp(rank - 1, 0 , rank_colors.size())]

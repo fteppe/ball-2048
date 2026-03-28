@@ -4,19 +4,34 @@
 [ext_resource type="PhysicsMaterial" uid="uid://cw1s4rm6ufa6y" path="res://ground_phy_material.tres" id="2_x4u1r"]
 [ext_resource type="PackedScene" uid="uid://cxmrdjcdiqobc" path="res://BallSpawner.tscn" id="3_cccdv"]
 
+[sub_resource type="Gradient" id="Gradient_x4u1r"]
+colors = PackedColorArray(0.6971134, 0.41006282, 0.12067657, 1, 0.9932057, 0.8604826, 0.5155607, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_h7suj"]
+gradient = SubResource("Gradient_x4u1r")
+
+[sub_resource type="Gradient" id="Gradient_cccdv"]
+colors = PackedColorArray(0.76862746, 0.5254902, 0.09411765, 1, 0.9957836, 0.9714928, 0.8725431, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_x4u1r"]
+gradient = SubResource("Gradient_cccdv")
+
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_x0drn"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_cccdv"]
-frequency = 0.02
-fractal_gain = 0.53
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_knh7k"]
-generate_mipmaps = false
-noise = SubResource("FastNoiseLite_cccdv")
-as_normal_map = true
 
 [node name="Mainmap" type="Node2D" unique_id=151565199]
 script = ExtResource("1_ifu8d")
+
+[node name="Background2" type="Sprite2D" parent="." unique_id=1539363545 groups=["balls"]]
+position = Vector2(307.0001, 267.9999)
+rotation = 3.1415925
+scale = Vector2(21.515491, 27.692846)
+texture = SubResource("GradientTexture2D_h7suj")
+
+[node name="Background" type="Sprite2D" parent="Background2" unique_id=1255627473]
+position = Vector2(1.8126516, -1.3721981)
+rotation = 1.5707964
+scale = Vector2(0.38277036, 0.38172495)
+texture = SubResource("GradientTexture2D_x4u1r")
 
 [node name="Left" type="StaticBody2D" parent="." unique_id=437479823]
 position = Vector2(0, 285)
@@ -42,14 +57,15 @@ physics_material_override = ExtResource("2_x4u1r")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Right" unique_id=131518884]
 shape = SubResource("WorldBoundaryShape2D_x0drn")
 
-[node name="Background" type="Sprite2D" parent="." unique_id=1255627473]
-position = Vector2(268.00003, 255)
-scale = Vector2(1.0311354, 1.5357156)
-texture = SubResource("NoiseTexture2D_knh7k")
-
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1568816171]
-position = Vector2(292, 262)
-zoom = Vector2(0.795, 0.795)
+position = Vector2(269, 325)
+zoom = Vector2(0.865, 0.865)
 
 [node name="BallSpawner" parent="." unique_id=1389751439 instance=ExtResource("3_cccdv")]
 position = Vector2(272, 3)
+
+[node name="RightSpawner" type="Node2D" parent="." unique_id=2055569934]
+position = Vector2(531, 0)
+
+[node name="LeftSpawner" type="Node2D" parent="." unique_id=1135056190]
+position = Vector2(7, 0)
