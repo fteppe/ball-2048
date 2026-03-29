@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c2pok4qn5aaix" path="res://ball.gd" id="1_gk6bx"]
 [ext_resource type="Texture2D" uid="uid://cpav1ukl5atp5" path="res://Ball.png" id="2_lww6v"]
+[ext_resource type="Texture2D" uid="uid://n4qt68lfitba" path="res://smoke.png" id="3_3tj6u"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lww6v"]
 friction = 0.6
@@ -13,6 +14,50 @@ radius = 50.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_lww6v"]
 font_size = 50
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 0.5803922)
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_3tj6u"]
+offsets = PackedFloat32Array(0, 0.74550897, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Animation" id="Animation_sr3km"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VisualAnimRoot:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3tj6u"]
+resource_name = "fuze_anim"
+length = 0.26666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VisualAnimRoot:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 0.1, 0.26666668),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sr3km"]
+_data = {
+&"RESET": SubResource("Animation_sr3km"),
+&"fuze_anim": SubResource("Animation_3tj6u")
+}
 
 [node name="Ball" type="RigidBody2D" unique_id=1929847300 groups=["balls"]]
 physics_material_override = SubResource("PhysicsMaterial_lww6v")
@@ -27,12 +72,14 @@ shape = SubResource("CircleShape2D_pa54t")
 
 [node name="Visuals" type="Node2D" parent="." unique_id=81599087]
 
-[node name="Sprite2D" type="Sprite2D" parent="Visuals" unique_id=1224878001]
+[node name="VisualAnimRoot" type="Node2D" parent="Visuals" unique_id=1795948852]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals/VisualAnimRoot" unique_id=1224878001]
 rotation = 1.7348574
 scale = Vector2(0.39925748, -0.4090889)
 texture = ExtResource("2_lww6v")
 
-[node name="Label" type="Label" parent="Visuals" unique_id=903129506]
+[node name="Label" type="Label" parent="Visuals/VisualAnimRoot" unique_id=903129506]
 offset_left = -35.0
 offset_top = -34.0
 offset_right = 46.0
@@ -43,5 +90,29 @@ theme_override_font_sizes/font_size = 50
 text = "  1  "
 label_settings = SubResource("LabelSettings_lww6v")
 horizontal_alignment = 1
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Visuals/VisualAnimRoot" unique_id=1188966069]
+emitting = false
+amount = 10
+texture = ExtResource("3_3tj6u")
+one_shot = true
+explosiveness = 1.0
+emission_shape = 6
+emission_ring_inner_radius = 55.0
+emission_ring_radius = 60.0
+gravity = Vector2(0, 0)
+angular_velocity_min = -38.5
+angular_velocity_max = 115.51
+radial_accel_min = 27.4
+radial_accel_max = 27.4
+angle_min = -694.5
+angle_max = 546.7
+scale_amount_min = 0.1
+scale_amount_max = 0.1
+color_ramp = SubResource("Gradient_3tj6u")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals" unique_id=663053933]
+libraries/ = SubResource("AnimationLibrary_sr3km")
+speed_scale = 1.28
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

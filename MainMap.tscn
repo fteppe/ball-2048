@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://idlfv5j6fanp" path="res://main_map.gd" id="1_ifu8d"]
 [ext_resource type="PhysicsMaterial" uid="uid://cw1s4rm6ufa6y" path="res://ground_phy_material.tres" id="2_x4u1r"]
 [ext_resource type="PackedScene" uid="uid://cxmrdjcdiqobc" path="res://BallSpawner.tscn" id="3_cccdv"]
+[ext_resource type="PackedScene" uid="uid://jksh0yo7xda2" path="res://Ball.tscn" id="4_x4u1r"]
 
 [sub_resource type="Gradient" id="Gradient_x4u1r"]
 colors = PackedColorArray(0.6971134, 0.41006282, 0.12067657, 1, 0.9932057, 0.8604826, 0.5155607, 1)
@@ -69,3 +70,6 @@ position = Vector2(531, 0)
 
 [node name="LeftSpawner" type="Node2D" parent="." unique_id=1135056190]
 position = Vector2(6, 0)
+
+[node name="Ball" parent="." unique_id=1929847300 instance=ExtResource("4_x4u1r")]
+position = Vector2(216, 308)
