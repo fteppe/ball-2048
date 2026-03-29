@@ -6,17 +6,17 @@
 [ext_resource type="PackedScene" uid="uid://jksh0yo7xda2" path="res://Ball.tscn" id="4_x4u1r"]
 [ext_resource type="PackedScene" uid="uid://brfaumd3gnq32" path="res://DeathZone.tscn" id="5_h7suj"]
 
-[sub_resource type="Gradient" id="Gradient_x4u1r"]
-colors = PackedColorArray(0.6971134, 0.41006282, 0.12067657, 1, 0.9932057, 0.8604826, 0.5155607, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_h7suj"]
-gradient = SubResource("Gradient_x4u1r")
-
 [sub_resource type="Gradient" id="Gradient_cccdv"]
 colors = PackedColorArray(0.76862746, 0.5254902, 0.09411765, 1, 0.9957836, 0.9714928, 0.8725431, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_x4u1r"]
 gradient = SubResource("Gradient_cccdv")
+
+[sub_resource type="Gradient" id="Gradient_x4u1r"]
+colors = PackedColorArray(0.6971134, 0.41006282, 0.12067657, 1, 0.9932057, 0.8604826, 0.5155607, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_h7suj"]
+gradient = SubResource("Gradient_x4u1r")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_x0drn"]
 
@@ -60,17 +60,18 @@ _data = {
 [node name="Mainmap" type="Node2D" unique_id=151565199]
 script = ExtResource("1_ifu8d")
 
-[node name="Background2" type="Sprite2D" parent="." unique_id=1539363545]
-position = Vector2(307.0001, 267.9999)
-rotation = 3.1415925
-scale = Vector2(21.515491, 27.692846)
-texture = SubResource("GradientTexture2D_h7suj")
-
-[node name="Background" type="Sprite2D" parent="Background2" unique_id=1255627473]
-position = Vector2(1.8126516, -1.3721981)
-rotation = 1.5707964
-scale = Vector2(0.38277036, 0.38172495)
+[node name="Background" type="Sprite2D" parent="." unique_id=1255627473]
+position = Vector2(268, 306)
+rotation = -1.5707965
+scale = Vector2(10.6, 8.213)
 texture = SubResource("GradientTexture2D_x4u1r")
+
+[node name="RequiredToView" type="Sprite2D" parent="Background" unique_id=1539363545]
+show_behind_parent = true
+position = Vector2(-1.6981142, -0.97406673)
+rotation = -1.5707964
+scale = Vector2(1.4748952, 1.732366)
+texture = SubResource("GradientTexture2D_h7suj")
 
 [node name="Left" type="StaticBody2D" parent="." unique_id=437479823]
 position = Vector2(4, 285)
@@ -96,8 +97,8 @@ physics_material_override = ExtResource("2_x4u1r")
 shape = SubResource("WorldBoundaryShape2D_x0drn")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1568816171]
-position = Vector2(269, 325)
-zoom = Vector2(0.865, 0.865)
+position = Vector2(265, 202)
+zoom = Vector2(0.83, 0.83)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D" unique_id=1063284538]
 libraries/ = SubResource("AnimationLibrary_5ctcv")

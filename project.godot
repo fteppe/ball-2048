@@ -27,6 +27,8 @@ GameModeBall="*uid://cyr61qfur7l5w"
 
 window/size/viewport_width=500
 window/size/viewport_height=980
+window/stretch/mode="canvas_items"
+window/handheld/orientation=1
 
 [physics]
 
