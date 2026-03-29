@@ -4,6 +4,7 @@
 [ext_resource type="PhysicsMaterial" uid="uid://cw1s4rm6ufa6y" path="res://ground_phy_material.tres" id="2_x4u1r"]
 [ext_resource type="PackedScene" uid="uid://cxmrdjcdiqobc" path="res://BallSpawner.tscn" id="3_cccdv"]
 [ext_resource type="PackedScene" uid="uid://jksh0yo7xda2" path="res://Ball.tscn" id="4_x4u1r"]
+[ext_resource type="PackedScene" uid="uid://brfaumd3gnq32" path="res://DeathZone.tscn" id="5_h7suj"]
 
 [sub_resource type="Gradient" id="Gradient_x4u1r"]
 colors = PackedColorArray(0.6971134, 0.41006282, 0.12067657, 1, 0.9932057, 0.8604826, 0.5155607, 1)
@@ -18,6 +19,43 @@ colors = PackedColorArray(0.76862746, 0.5254902, 0.09411765, 1, 0.9957836, 0.971
 gradient = SubResource("Gradient_cccdv")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_x0drn"]
+
+[sub_resource type="Animation" id="Animation_h7suj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rjo7s"]
+resource_name = "screen_shake"
+length = 1.3666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.06666667, 0.2, 0.6, 0.96666664, 1.3333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-5, -2), Vector2(6, -5), Vector2(-3, 3), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5ctcv"]
+_data = {
+&"RESET": SubResource("Animation_h7suj"),
+&"screen_shake": SubResource("Animation_rjo7s")
+}
 
 [node name="Mainmap" type="Node2D" unique_id=151565199]
 script = ExtResource("1_ifu8d")
@@ -35,12 +73,11 @@ scale = Vector2(0.38277036, 0.38172495)
 texture = SubResource("GradientTexture2D_x4u1r")
 
 [node name="Left" type="StaticBody2D" parent="." unique_id=437479823]
-position = Vector2(0, 285)
+position = Vector2(4, 285)
 rotation = 1.5707964
 physics_material_override = ExtResource("2_x4u1r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Left" unique_id=1592641092]
-position = Vector2(-1.3113416e-07, -3)
 shape = SubResource("WorldBoundaryShape2D_x0drn")
 
 [node name="Ground" type="StaticBody2D" parent="." unique_id=311077774]
@@ -62,6 +99,10 @@ shape = SubResource("WorldBoundaryShape2D_x0drn")
 position = Vector2(269, 325)
 zoom = Vector2(0.865, 0.865)
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D" unique_id=1063284538]
+libraries/ = SubResource("AnimationLibrary_5ctcv")
+speed_scale = 3.0
+
 [node name="BallSpawner" parent="." unique_id=1389751439 instance=ExtResource("3_cccdv")]
 position = Vector2(268, 3)
 
@@ -73,3 +114,6 @@ position = Vector2(6, 0)
 
 [node name="Ball" parent="." unique_id=1929847300 instance=ExtResource("4_x4u1r")]
 position = Vector2(216, 308)
+
+[node name="DeathZone" parent="." unique_id=1998797930 instance=ExtResource("5_h7suj")]
+position = Vector2(10, -1)

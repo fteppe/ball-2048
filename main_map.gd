@@ -15,6 +15,7 @@ var previous_mouse_pos_x : float
 
 func ball_created(ball : Ball):
 	print("Ball created rank ", ball.rank)
+	$Camera2D/AnimationPlayer.play("screen_shake")
 
 func _unhandled_input(event):
 	var current_mouse_pos = $BallSpawner.get_global_mouse_position().x

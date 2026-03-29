@@ -18,6 +18,10 @@ shadow_size = 10
 shadow_color = Color(0, 0, 0, 0.5803922)
 shadow_offset = Vector2(0, 0)
 
+[sub_resource type="Curve" id="Curve_3tj6u"]
+_data = [Vector2(0, 0.009793282), 0.0, 0.0, 0, 0, Vector2(0.35833332, 0.9009793), 0.0, 0.0, 0, 0, Vector2(1, 0.476605), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [sub_resource type="Gradient" id="Gradient_3tj6u"]
 offsets = PackedFloat32Array(0, 0.74550897, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
@@ -93,9 +97,10 @@ horizontal_alignment = 1
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Visuals/VisualAnimRoot" unique_id=1188966069]
 emitting = false
-amount = 10
+amount = 20
 texture = ExtResource("3_3tj6u")
 one_shot = true
+speed_scale = 1.4
 explosiveness = 1.0
 emission_shape = 6
 emission_ring_inner_radius = 55.0
@@ -103,12 +108,13 @@ emission_ring_radius = 60.0
 gravity = Vector2(0, 0)
 angular_velocity_min = -38.5
 angular_velocity_max = 115.51
-radial_accel_min = 27.4
-radial_accel_max = 27.4
+radial_accel_min = 5.0
+radial_accel_max = 5.0
 angle_min = -694.5
 angle_max = 546.7
 scale_amount_min = 0.1
 scale_amount_max = 0.1
+scale_amount_curve = SubResource("Curve_3tj6u")
 color_ramp = SubResource("Gradient_3tj6u")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals" unique_id=663053933]
