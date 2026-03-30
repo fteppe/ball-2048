@@ -11,13 +11,11 @@ var ball_scene : PackedScene = load("res://Ball.tscn")
 var size : int 
 var initial_rotation : float
 var initial_collider_radius : float
-var death_zone_ratio : float = 0
+var max_time_death_zone : float = GameModeBall.get_death_time()
+var death_zone_time : float = 0.
 
 func get_radius():
 	return ($CollisionShape2D.shape as CircleShape2D).radius
-
-func set_death_zone_ratio(ratio : float):
-	death_zone_ratio = ratio
 
 func update_size_from_rank():
 	size = pow(2, rank - 1)
@@ -62,7 +60,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	$Visuals/VisualAnimRoot.position = Vector2(randf(), randf()) * death_zone_ratio * 20.
+	if death_zone_time >= 0:
+		death_zone_time += delta
+	$Visuals/VisualAnimRoot.position = Vector2(randf(), randf()) * clampf(death_zone_time / max_time_death_zone, 0., 1.) * 20.
 	$Visuals/VisualAnimRoot/Sprite2D.global_rotation = initial_rotation
 	pass
 
@@ -74,3 +74,11 @@ func _on_body_entered(body : Area2D):
 		if ball.rank == self.rank && !ball.is_queued_for_deletion() && !self.is_queued_for_deletion():
 			rank_up(ball)
 	pass # Replace with function body.
+	
+func is_in_alive_zone():
+	death_zone_time = -1.
+
+func exited_alive_zone(max_time : float):
+	death_zone_time = 0.
+	max_time_death_zone = max_time
+	
