@@ -1,6 +1,8 @@
 extends RigidBody2D
 class_name Ball
 
+signal ball_destroyed_in_merge(ball: Ball)
+
 @export var rank : int = 1
 @export var rank_colors : Array[Color]
 
@@ -20,8 +22,10 @@ func set_death_zone_ratio(ratio : float):
 func update_size_from_rank():
 	size = pow(2, rank - 1)
 	$Visuals/VisualAnimRoot/Label.text = str(size)
-	var radius_from_rank = sqrt(rank) * 0.4
-	($CollisionShape2D.shape as CircleShape2D).radius = radius_from_rank * initial_collider_radius
+	var radius_from_rank =  0.3 + rank * 0.3
+	var collider_radius =  radius_from_rank * initial_collider_radius
+	($CollisionShape2D.shape as CircleShape2D).radius = collider_radius
+	($Area2D/CollisionShape2D.shape as CircleShape2D).radius = collider_radius + 5
 	$Visuals.scale = Vector2(radius_from_rank, radius_from_rank)
 	$Visuals/VisualAnimRoot/Sprite2D.modulate = rank_colors[clamp(rank - 1, 0 , rank_colors.size() - 1)]
 	self.set_mass(radius_from_rank * radius_from_rank)
@@ -35,7 +39,9 @@ func rank_up(other_ball : Ball):
 	new_ball.rank = rank + 1
 	self.get_parent().call_deferred("add_child", new_ball)
 	new_ball.on_ball_fused()
+	other_ball.ball_destroyed_in_merge.emit(other_ball)
 	other_ball.queue_free()
+	self.ball_destroyed_in_merge.emit(self)
 	self.queue_free()
 
 func on_ball_fused():
@@ -62,9 +68,9 @@ func _process(delta):
 
 
 
-func _on_body_entered(body : Variant):
-	if body is Ball:
-		var ball : Ball = body as Ball
+func _on_body_entered(body : Area2D):
+	if body.get_parent() is Ball:
+		var ball : Ball = body.get_parent()  as Ball
 		if ball.rank == self.rank && !ball.is_queued_for_deletion() && !self.is_queued_for_deletion():
 			rank_up(ball)
 	pass # Replace with function body.

@@ -23,6 +23,7 @@ func get_rank_to_generate():
 func generate_ball():
 	if last_dropped_ball:
 		last_dropped_ball.body_entered.disconnect(ball_collided)
+		last_dropped_ball.ball_destroyed_in_merge.disconnect(ball_collided)
 	last_dropped_ball = null
 	held_ball = ball_scene.instantiate()
 	held_ball.rank = get_rank_to_generate()
@@ -39,6 +40,7 @@ func _unhandled_input(event):
 		if event.is_released() && event.button_index == 1 && is_held && held_ball:
 			is_held = false
 			held_ball.body_entered.connect(ball_collided)
+			held_ball.ball_destroyed_in_merge.connect(ball_collided)
 			held_ball.process_mode = Node.PROCESS_MODE_INHERIT
 			last_dropped_ball = held_ball
 			self.remove_child(held_ball)
