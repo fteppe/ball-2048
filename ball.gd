@@ -5,6 +5,7 @@ signal ball_destroyed_in_merge(ball: Ball)
 
 @export var rank : int = 1
 @export var rank_colors : Array[Color]
+@onready var timer = $Timer
 
 var ball_scene : PackedScene = load("res://Ball.tscn")
 
@@ -13,6 +14,7 @@ var initial_rotation : float
 var initial_collider_radius : float
 var max_time_death_zone : float = GameModeBall.get_death_time()
 var death_zone_time : float = 0.
+var is_dying : bool = false
 
 func get_radius():
 	return ($CollisionShape2D.shape as CircleShape2D).radius
@@ -54,25 +56,35 @@ func on_ball_fused():
 func _ready():
 	initial_rotation = $Visuals/VisualAnimRoot/Sprite2D.global_rotation
 	initial_collider_radius = 50
+	GameModeBall.ball_died.connect(game_over)
 	update_size_from_rank()
 	pass # Replace with function body.
 
+func die():
+	GameModeBall.ball_died.emit(self)
+	self.queue_free()
 
+func start_deah():
+	if !is_dying:
+		is_dying = true
+		$Visuals/AnimationPlayer.play("death")
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if death_zone_time >= 0:
 		death_zone_time += delta
 	$Visuals/VisualAnimRoot.position = Vector2(randf(), randf()) * clampf(death_zone_time / max_time_death_zone, 0., 1.) * 20.
 	$Visuals/VisualAnimRoot/Sprite2D.global_rotation = initial_rotation
+	if death_zone_time > max_time_death_zone:
+		start_deah()
 	pass
-
 
 
 func _on_body_entered(body : Area2D):
 	if body.get_parent() is Ball:
 		var ball : Ball = body.get_parent()  as Ball
-		if ball.rank == self.rank && !ball.is_queued_for_deletion() && !self.is_queued_for_deletion():
-			rank_up(ball)
+		#if ball.rank == self.rank && !ball.is_queued_for_deletion() && !self.is_queued_for_deletion():
+			#rank_up(ball)
 	pass # Replace with function body.
 	
 func is_in_alive_zone():
@@ -82,3 +94,8 @@ func exited_alive_zone(max_time : float):
 	death_zone_time = 0.
 	max_time_death_zone = max_time
 	
+func game_over(ball : Ball):
+	
+	#timer.wait_time = randf_range(0.1, 0.3)
+	timer.start(randf_range(0.1, 0.3))
+	timer.timeout.connect(start_deah)

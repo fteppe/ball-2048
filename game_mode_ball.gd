@@ -1,6 +1,7 @@
 extends Node
 
 signal ball_created(ball : Ball)
+signal ball_died(ball: Ball)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -90,4 +90,4 @@ position = Vector2(531, 0)
 position = Vector2(6, 0)
 
 [node name="DeathZone" parent="." unique_id=1998797930 instance=ExtResource("5_h7suj")]
-position = Vector2(-3, 604)
+position = Vector2(-7, 47)
