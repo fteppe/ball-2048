@@ -83,8 +83,8 @@ func _process(delta):
 func _on_body_entered(body : Area2D):
 	if body.get_parent() is Ball:
 		var ball : Ball = body.get_parent()  as Ball
-		#if ball.rank == self.rank && !ball.is_queued_for_deletion() && !self.is_queued_for_deletion():
-			#rank_up(ball)
+		if ball.rank == self.rank && !ball.is_queued_for_deletion() && !self.is_queued_for_deletion():
+			rank_up(ball)
 	pass # Replace with function body.
 	
 func is_in_alive_zone():
@@ -96,6 +96,5 @@ func exited_alive_zone(max_time : float):
 	
 func game_over(ball : Ball):
 	
-	#timer.wait_time = randf_range(0.1, 0.3)
-	timer.start(randf_range(0.1, 0.3))
+	timer.start(randf_range(0.1, 1.))
 	timer.timeout.connect(start_deah)
