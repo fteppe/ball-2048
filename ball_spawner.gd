@@ -17,8 +17,9 @@ func _ready():
 	pass # Replace with function body.
 
 func _game_over(ball : Ball):
-	held_ball.queue_free()
-	held_ball = null
+	if held_ball:
+		held_ball.queue_free()
+		held_ball = null
 
 func ball_created(ball : Ball):
 	max_rank_reached = max(max_rank_reached, ball.rank)
@@ -55,16 +56,17 @@ func _unhandled_input(event):
 	if event is InputEventMouseButton:
 		if event.pressed && event.button_index == 1:
 			is_held = true
-		if event.is_released() && event.button_index == 1 && is_held && held_ball:
+		if event.is_released() && event.button_index == 1 && is_held:
 			is_held = false
-			held_ball.body_entered.connect(ball_collided)
-			held_ball.ball_destroyed_in_merge.connect(ball_collided)
-			held_ball.process_mode = Node.PROCESS_MODE_INHERIT
-			last_dropped_ball = held_ball
-			self.remove_child(held_ball)
-			held_ball = null
-			last_dropped_ball.global_position = $SpawnPoint.global_position
-			self.get_parent().add_child(last_dropped_ball)
+			if held_ball:
+				held_ball.body_entered.connect(ball_collided)
+				held_ball.ball_destroyed_in_merge.connect(ball_collided)
+				held_ball.process_mode = Node.PROCESS_MODE_INHERIT
+				last_dropped_ball = held_ball
+				self.remove_child(held_ball)
+				held_ball = null
+				last_dropped_ball.global_position = $SpawnPoint.global_position
+				self.get_parent().add_child(last_dropped_ball)
 
 func get_held_ball_radius() :
 	if held_ball:
