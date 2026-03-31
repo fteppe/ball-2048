@@ -8,11 +8,10 @@ size = Vector2(555.5, 845)
 
 [node name="DeathZone" type="Node2D" unique_id=1998797930]
 script = ExtResource("1_j53p1")
-max_death_zone_time = 5.0
 
 [node name="Line2D" type="Line2D" parent="." unique_id=1354698501]
 texture_repeat = 2
-position = Vector2(242, -18)
+position = Vector2(271, -18)
 scale = Vector2(2.0725806, 1)
 points = PackedVector2Array(-116.5, 17, 121.5, 18)
 width = 5.0

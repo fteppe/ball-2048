@@ -5,7 +5,10 @@ var ball_scene = load("res://Ball.tscn")
 var is_held : bool = false
 var last_dropped_ball : Ball
 var held_ball : Ball
+
 var max_rank_reached : int = 1
+var last_generated_rank : int = 1
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	generate_ball()
@@ -17,7 +20,13 @@ func ball_created(ball : Ball):
 
 func get_rank_to_generate():
 	var max_rank_to_generate = max(max_rank_reached/2, 3)
-	var rank_to_generate = clampf(randfn(max_rank_to_generate / 2, 1), 1, max_rank_to_generate)
+	var next_rank_to_gen_center = max( 1, (last_generated_rank + 1) % max_rank_to_generate) #we loop around
+	print("rank center is ", next_rank_to_gen_center, " max rank is ", max_rank_to_generate)
+	#we chose the rank centered around the next epxected one, with some chance to pick something else
+	var random_normal_result = randfn(next_rank_to_gen_center, 2)
+	print("random_normal_result ",random_normal_result)
+	var rank_to_generate = clampf(random_normal_result, 1, max_rank_to_generate)
+	last_generated_rank = rank_to_generate
 	return rank_to_generate
 
 func generate_ball():

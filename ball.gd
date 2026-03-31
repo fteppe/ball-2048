@@ -62,7 +62,6 @@ func _ready():
 
 func die():
 	GameModeBall.ball_died.emit(self)
-	self.queue_free()
 
 func start_deah():
 	if !is_dying:
@@ -95,6 +94,5 @@ func exited_alive_zone(max_time : float):
 	max_time_death_zone = max_time
 	
 func game_over(ball : Ball):
-	
 	timer.start(randf_range(0.1, 1.))
 	timer.timeout.connect(start_deah)
