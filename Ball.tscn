@@ -10,7 +10,7 @@ bounce = 0.1
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pa54t"]
 resource_local_to_scene = true
-radius = 50.0
+radius = 52.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_lww6v"]
 font_size = 50
@@ -151,6 +151,7 @@ resource_local_to_scene = true
 radius = 53.08484
 
 [node name="Ball" type="RigidBody2D" unique_id=1929847300 groups=["balls"]]
+scale = Vector2(1, 1.0048906)
 physics_material_override = SubResource("PhysicsMaterial_lww6v")
 contact_monitor = true
 max_contacts_reported = 5

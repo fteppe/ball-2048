@@ -40,6 +40,8 @@ func get_rank_to_generate():
 	return rank_to_generate
 
 func generate_ball():
+	if held_ball:
+		return
 	if last_dropped_ball:
 		last_dropped_ball.body_entered.disconnect(ball_collided)
 		last_dropped_ball.ball_destroyed_in_merge.disconnect(ball_collided)

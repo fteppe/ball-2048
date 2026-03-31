@@ -1,7 +1,5 @@
-extends Node
+extends Control
 
-signal ball_created(ball : Ball)
-signal ball_died(ball: Ball)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,9 +10,7 @@ func _ready():
 func _process(delta):
 	pass
 
-func get_death_time() -> float:
-	return 5.
 
-func reset_game_mode():
-	print("game mode reset")
-	#do nothing for now
+func _on_button_button_up():
+	get_tree().change_scene_to_file("res://MainMap.tscn")
+	pass # Replace with function body.

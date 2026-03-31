@@ -4,6 +4,7 @@
 [ext_resource type="PhysicsMaterial" uid="uid://cw1s4rm6ufa6y" path="res://ground_phy_material.tres" id="2_x4u1r"]
 [ext_resource type="PackedScene" uid="uid://cxmrdjcdiqobc" path="res://BallSpawner.tscn" id="3_cccdv"]
 [ext_resource type="PackedScene" uid="uid://brfaumd3gnq32" path="res://DeathZone.tscn" id="5_h7suj"]
+[ext_resource type="PackedScene" uid="uid://dc4i8aqu8mbdk" path="res://UI/GameUI.tscn" id="5_rjo7s"]
 
 [sub_resource type="Gradient" id="Gradient_cccdv"]
 colors = PackedColorArray(0.76862746, 0.5254902, 0.09411765, 1, 0.9957836, 0.9714928, 0.8725431, 1)
@@ -91,3 +92,10 @@ position = Vector2(6, 0)
 
 [node name="DeathZone" parent="." unique_id=1998797930 instance=ExtResource("5_h7suj")]
 position = Vector2(-9, 81)
+
+[node name="GameUi" parent="." unique_id=2004966527 instance=ExtResource("5_rjo7s")]
+offset_left = -32.0
+offset_top = -257.0
+offset_right = -32.0
+offset_bottom = -257.0
+scale = Vector2(0.9441985, 0.9158849)

@@ -3,6 +3,7 @@ class_name MainMap
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	GameModeBall.reset_game_mode()
 	GameModeBall.ball_created.connect(ball_created)
 	pass # Replace with function body.
 

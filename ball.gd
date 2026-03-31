@@ -55,7 +55,7 @@ func on_ball_fused():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	initial_rotation = $Visuals/VisualAnimRoot/Sprite2D.global_rotation
-	initial_collider_radius = 50
+	initial_collider_radius = 51
 	GameModeBall.ball_died.connect(game_over)
 	update_size_from_rank()
 	pass # Replace with function body.
