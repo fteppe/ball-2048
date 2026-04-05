@@ -22,7 +22,7 @@ func get_radius():
 func update_size_from_rank():
 	size = pow(2, rank - 1)
 	$Visuals/VisualAnimRoot/Label.text = str(size)
-	var radius_from_rank =  0.3 + rank * 0.3
+	var radius_from_rank =  0.3 + rank * 0.2
 	var collider_radius =  radius_from_rank * initial_collider_radius
 	($CollisionShape2D.shape as CircleShape2D).radius = collider_radius
 	($Area2D/CollisionShape2D.shape as CircleShape2D).radius = collider_radius + 5
@@ -35,7 +35,8 @@ func rank_up(other_ball : Ball):
 	new_ball.global_position = (self.global_position + other_ball.global_position) * 0.5
 	new_ball.linear_velocity = (self.linear_velocity + other_ball.linear_velocity) * 0.5
 	new_ball.angular_velocity = (self.angular_velocity + other_ball.angular_velocity) * 0.5
-	
+	new_ball.death_zone_time = max(self.death_zone_time, other_ball.death_zone_time)
+	Input.vibrate_handheld(100)
 	new_ball.rank = rank + 1
 	self.get_parent().call_deferred("add_child", new_ball)
 	new_ball.on_ball_fused()
