@@ -4,3 +4,6 @@
 
 [node name="GameMode" type="Node" unique_id=2000514612]
 script = ExtResource("1_17hkp")
+level_scores = Array[int]([20, 40, 60, 100, 140, 200])
+
+[connection signal="ball_created" from="." to="." method="_on_ball_created"]

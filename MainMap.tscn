@@ -94,8 +94,8 @@ position = Vector2(6, 0)
 position = Vector2(-9, 81)
 
 [node name="GameUi" parent="." unique_id=2004966527 instance=ExtResource("5_rjo7s")]
-offset_left = -32.0
-offset_top = -257.0
-offset_right = -32.0
-offset_bottom = -257.0
+offset_left = 36.0
+offset_top = -212.0
+offset_right = 36.0
+offset_bottom = -212.0
 scale = Vector2(0.9441985, 0.9158849)

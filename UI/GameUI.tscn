@@ -1,6 +1,35 @@
 [gd_scene format=3 uid="uid://dc4i8aqu8mbdk"]
 
 [ext_resource type="Script" uid="uid://clchwmynln67f" path="res://UI/game_ui.gd" id="1_ltpa0"]
+[ext_resource type="LabelSettings" uid="uid://c7ymu8c42xqdy" path="res://UI/level_label_settings.tres" id="2_hqqrp"]
+[ext_resource type="Texture2D" uid="uid://n4qt68lfitba" path="res://smoke.png" id="2_lwtm8"]
+[ext_resource type="LabelSettings" uid="uid://c4proeq7yvdnb" path="res://UI/score_label_setting.tres" id="4_dgedd"]
+
+[sub_resource type="Curve" id="Curve_hqqrp"]
+_data = [Vector2(0, 0.009793282), 0.0, 0.0, 0, 0, Vector2(0.35833332, 0.9009793), 0.0, 0.0, 0, 0, Vector2(1, 0.476605), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_dgedd"]
+offsets = PackedFloat32Array(0, 0.74550897, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.28235295, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_ltpa0"]
+colors = PackedColorArray(0.73393774, 0.7676126, 0.9174419, 1, 0.4998, 0.51, 0.50813, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ltpa0"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lwtm8"]
+height = 40
+noise = SubResource("FastNoiseLite_ltpa0")
+color_ramp = SubResource("Gradient_ltpa0")
+
+[sub_resource type="Gradient" id="Gradient_lwtm8"]
+colors = PackedColorArray(0.4182377, 0.6019757, 1, 1, 0.1609742, 1.540184e-06, 0.888176, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hqqrp"]
+gradient = SubResource("Gradient_lwtm8")
+width = 512
+height = 40
 
 [node name="GameUi" type="Control" unique_id=2004966527]
 layout_mode = 3
@@ -11,11 +40,70 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ltpa0")
 
-[node name="Button" type="Button" parent="." unique_id=856977919]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1322289702]
 layout_mode = 0
-offset_right = 65.0
-offset_bottom = 40.0
-scale = Vector2(2.515082, 2.0726535)
+offset_right = 304.0
+offset_bottom = 144.0
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=856977919]
+layout_mode = 2
 text = "Restart"
 
-[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1000020604]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=485801385]
+layout_mode = 2
+text = "Level :"
+label_settings = ExtResource("2_hqqrp")
+
+[node name="CurrentLevel" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1874090256]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+label_settings = ExtResource("2_hqqrp")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="VBoxContainer/HBoxContainer/CurrentLevel" unique_id=2098568245]
+position = Vector2(12, 13)
+emitting = false
+amount = 20
+texture = ExtResource("2_lwtm8")
+one_shot = true
+speed_scale = 1.4
+explosiveness = 1.0
+emission_shape = 6
+emission_ring_inner_radius = 40.0
+emission_ring_radius = 50.0
+gravity = Vector2(0, 0)
+angular_velocity_min = -38.5
+angular_velocity_max = 115.51
+radial_accel_min = 5.0
+radial_accel_max = 5.0
+angle_min = -694.5
+angle_max = 546.7
+scale_amount_min = 0.1
+scale_amount_max = 0.1
+scale_amount_curve = SubResource("Curve_hqqrp")
+color_ramp = SubResource("Gradient_dgedd")
+
+[node name="ScoreProgress" type="TextureProgressBar" parent="VBoxContainer" unique_id=1003007789]
+unique_name_in_owner = true
+layout_mode = 2
+value = 80.0
+texture_under = SubResource("NoiseTexture2D_lwtm8")
+texture_progress = SubResource("GradientTexture2D_hqqrp")
+
+[node name="Score" type="Label" parent="VBoxContainer/ScoreProgress" unique_id=1661275889]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Score"
+label_settings = ExtResource("4_dgedd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="button_up" from="VBoxContainer/Button" to="." method="_on_button_button_up"]
