@@ -63,7 +63,7 @@ func _unhandled_input(event):
 			if held_ball:
 				held_ball.body_entered.connect(ball_collided)
 				held_ball.ball_destroyed_in_merge.connect(ball_collided)
-				held_ball.process_mode = Node.PROCESS_MODE_INHERIT
+				held_ball.drop_ball()
 				last_dropped_ball = held_ball
 				self.remove_child(held_ball)
 				held_ball = null

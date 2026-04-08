@@ -44,9 +44,9 @@ scale = Vector2(12.235113, 20.920773)
 texture = SubResource("GradientTexture2D_h7suj")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1255627473]
-position = Vector2(268, 226.7)
+position = Vector2(268, 280.255)
 rotation = -1.5707965
-scale = Vector2(13.105, 8.213)
+scale = Vector2(11.335, 8.213)
 texture = SubResource("GradientTexture2D_x4u1r")
 
 [node name="Left" type="StaticBody2D" parent="." unique_id=437479823]

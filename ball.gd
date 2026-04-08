@@ -5,6 +5,7 @@ signal ball_destroyed_in_merge(ball: Ball)
 
 @export var rank : int = 1
 @export var rank_colors : Array[Color]
+@export var death_imunity_time_msec : int = 0
 @onready var timer = $Timer
 
 var ball_scene : PackedScene = load("res://Ball.tscn")
@@ -15,6 +16,7 @@ var initial_collider_radius : float
 var max_time_death_zone : float = GameModeBall.get_death_time()
 var death_zone_time : float = 0.
 var is_dying : bool = false
+var start_living : int = 0
 
 func get_radius():
 	return ($CollisionShape2D.shape as CircleShape2D).radius
@@ -23,7 +25,7 @@ func set_ball_number(number : int):
 	%BallNumber.text = str(number)
 	var font_size = 59
 	%BallNumber.add_theme_font_size_override("normal_font_size", font_size)
-	while %BallNumber.get_theme_font("normal_font").get_string_size(%BallNumber.text,%BallNumber.horizontal_alignment, -1, font_size).x > %BallNumber.get_content_width():
+	while %BallNumber.get_theme_font("normal_font").get_string_size(%BallNumber.text,%BallNumber.horizontal_alignment, -1, font_size).x > %BallNumber.get_content_width() && font_size > 1:
 		font_size -= 1
 		%BallNumber.add_theme_font_size_override("normal_font_size", font_size)
 
@@ -58,8 +60,6 @@ func on_ball_fused():
 	GameModeBall.ball_created.emit(self)
 	$Visuals/AnimationPlayer.play("fuze_anim")
 	$Visuals/VisualAnimRoot/CPUParticles2D.restart()
-	
-	
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -67,13 +67,14 @@ func _ready():
 	initial_collider_radius = 51
 	GameModeBall.ball_died.connect(game_over)
 	update_size_from_rank()
+	start_living = Time.get_ticks_msec()
 	pass # Replace with function body.
 
 func die():
 	GameModeBall.ball_died.emit(self)
 
 func start_deah():
-	if !is_dying:
+	if !is_dying && _can_die():
 		is_dying = true
 		$Visuals/AnimationPlayer.play("death")
 	
@@ -105,3 +106,10 @@ func exited_alive_zone(max_time : float):
 func game_over(ball : Ball):
 	timer.start(randf_range(0.1, 1.))
 	timer.timeout.connect(start_deah)
+
+func _can_die():
+	return Time.get_ticks_msec() - start_living > self.death_imunity_time_msec
+
+func drop_ball():
+	self.process_mode = Node.PROCESS_MODE_INHERIT
+	start_living = Time.get_ticks_msec()
