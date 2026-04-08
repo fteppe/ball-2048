@@ -9,11 +9,16 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	%Score.text = str(GameModeBall.get_score())
+	var current_score = str(GameModeBall.get_score())
+	if current_score != %Score.text:
+		%Score.text = current_score
 	%ScoreProgress.value = GameModeBall.get_score()
-	%MaxRank.text = str(GameModeBall.get_max_ball_size())
-	%MaxLevel.text = str(GameModeBall.get_max_level())
-	pass
+	var max_rank = str(GameModeBall.get_max_ball_size())
+	if max_rank != %MaxRank.text:
+		%MaxRank.text = str(GameModeBall.get_max_ball_size())
+	var max_level = str(GameModeBall.get_max_level())
+	if max_level != %MaxLevel.text:
+		%MaxLevel.text = str(GameModeBall.get_max_level())
 
 func _on_level_up(new_level : int):
 	%ScoreProgress.max_value = GameModeBall.get_score_to_reach()

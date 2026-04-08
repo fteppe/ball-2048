@@ -6,6 +6,7 @@ signal ball_destroyed_in_merge(ball: Ball)
 @export var rank : int = 1
 @export var rank_colors : Array[Color]
 @export var death_imunity_time_msec : int = 0
+@export var ball_number_digit_to_font : Array[int]
 @onready var timer = $Timer
 
 var ball_scene : PackedScene = load("res://Ball.tscn")
@@ -23,11 +24,8 @@ func get_radius():
 
 func set_ball_number(number : int):
 	%BallNumber.text = str(number)
-	var font_size = 59
-	%BallNumber.add_theme_font_size_override("normal_font_size", font_size)
-	while %BallNumber.get_theme_font("normal_font").get_string_size(%BallNumber.text,%BallNumber.horizontal_alignment, -1, font_size).x > %BallNumber.get_content_width() && font_size > 1:
-		font_size -= 1
-		%BallNumber.add_theme_font_size_override("normal_font_size", font_size)
+	var label_settings = (%BallNumber.label_settings as LabelSettings)
+	label_settings.font_size = ball_number_digit_to_font[%BallNumber.text.length()]
 
 func update_size_from_rank():
 	size = pow(2, rank - 1)
