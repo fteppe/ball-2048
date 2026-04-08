@@ -1,0 +1,9 @@
+[gd_resource type="Theme" format=3 uid="uid://vtjb6glvppxy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v4gqq"]
+bg_color = Color(0.7129537, 0.39141387, 0.08480083, 1)
+
+[resource]
+Button/constants/outline_size = 10
+Button/font_sizes/font_size = 30
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_v4gqq")

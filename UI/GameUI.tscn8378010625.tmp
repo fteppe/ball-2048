@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://clchwmynln67f" path="res://UI/game_ui.gd" id="1_ltpa0"]
 [ext_resource type="Texture2D" uid="uid://bivddajk2ck2i" path="res://UI/settings.svg" id="2_1vk3t"]
-[ext_resource type="Theme" uid="uid://vtjb6glvppxy" path="res://UI/ui_theme.tres" id="2_h2x3y"]
 [ext_resource type="LabelSettings" uid="uid://c7ymu8c42xqdy" path="res://UI/level_label_settings.tres" id="2_hqqrp"]
 [ext_resource type="Texture2D" uid="uid://n4qt68lfitba" path="res://smoke.png" id="2_lwtm8"]
 [ext_resource type="LabelSettings" uid="uid://c4proeq7yvdnb" path="res://UI/score_label_setting.tres" id="4_dgedd"]
@@ -58,8 +57,6 @@ size_flags_horizontal = 3
 [node name="Settings" type="Button" parent="Main/HBoxContainer2" unique_id=316502220]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-theme = ExtResource("2_h2x3y")
-theme_type_variation = &"FlatButton"
 icon = ExtResource("2_1vk3t")
 icon_alignment = 1
 expand_icon = true
@@ -168,8 +165,7 @@ vertical_alignment = 1
 layout_mode = 2
 mouse_filter = 2
 
-[node name="PopupContainer" type="MarginContainer" parent="CenterContainer" unique_id=729376732]
-unique_name_in_owner = true
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer" unique_id=729376732]
 layout_mode = 2
 theme_override_constants/margin_top = 244
 

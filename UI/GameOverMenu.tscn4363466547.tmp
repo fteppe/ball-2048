@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://c8tyn5yqbiic7"]
+
+[ext_resource type="LabelSettings" uid="uid://c4proeq7yvdnb" path="res://UI/score_label_setting.tres" id="1_0u5yh"]
+[ext_resource type="Script" uid="uid://c4kjmlbwo4xl2" path="res://UI/game_over_menu.gd" id="1_76f00"]
+
+[sub_resource type="Theme" id="Theme_0u5yh"]
+
+[node name="PanelContainer" type="PanelContainer" unique_id=453133376]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -151.5
+offset_top = -64.5
+offset_right = 151.5
+offset_bottom = 64.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_76f00")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=306733574]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="MenuBlock" type="BoxContainer" parent="MarginContainer" unique_id=187017692]
+layout_mode = 2
+theme = SubResource("Theme_0u5yh")
+vertical = true
+
+[node name="LabelsSize" type="HBoxContainer" parent="MarginContainer/MenuBlock" unique_id=1274563157]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/MenuBlock/LabelsSize" unique_id=1902730996]
+layout_mode = 2
+text = "Ball rank reached:"
+label_settings = ExtResource("1_0u5yh")
+
+[node name="BoxContainer" type="BoxContainer" parent="MarginContainer/MenuBlock/LabelsSize" unique_id=1653288832]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Size" type="Label" parent="MarginContainer/MenuBlock/LabelsSize" unique_id=544852868]
+unique_name_in_owner = true
+layout_mode = 2
+text = "2048"
+label_settings = ExtResource("1_0u5yh")
+
+[node name="LabeslLevel" type="HBoxContainer" parent="MarginContainer/MenuBlock" unique_id=1334976971]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/MenuBlock/LabeslLevel" unique_id=1242852848]
+layout_mode = 2
+text = "Level reached:"
+label_settings = ExtResource("1_0u5yh")
+
+[node name="BoxContainer" type="BoxContainer" parent="MarginContainer/MenuBlock/LabeslLevel" unique_id=689144985]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Level" type="Label" parent="MarginContainer/MenuBlock/LabeslLevel" unique_id=1229649097]
+unique_name_in_owner = true
+layout_mode = 2
+text = "12"
+label_settings = ExtResource("1_0u5yh")
+
+[node name="Restart" type="Button" parent="MarginContainer/MenuBlock" unique_id=651239923]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Restart"
+
+[node name="Timer" type="Timer" parent="." unique_id=754756213]
+unique_name_in_owner = true
+
+[connection signal="pressed" from="MarginContainer/MenuBlock/Restart" to="." method="_on_restart_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
