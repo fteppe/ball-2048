@@ -6,17 +6,17 @@
 [ext_resource type="PackedScene" uid="uid://brfaumd3gnq32" path="res://DeathZone.tscn" id="5_h7suj"]
 [ext_resource type="PackedScene" uid="uid://dc4i8aqu8mbdk" path="res://UI/GameUI.tscn" id="5_rjo7s"]
 
-[sub_resource type="Gradient" id="Gradient_cccdv"]
-colors = PackedColorArray(0.76862746, 0.5254902, 0.09411765, 1, 0.9957836, 0.9714928, 0.8725431, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_x4u1r"]
-gradient = SubResource("Gradient_cccdv")
-
 [sub_resource type="Gradient" id="Gradient_x4u1r"]
 colors = PackedColorArray(0.6971134, 0.41006282, 0.12067657, 1, 0.9932057, 0.8604826, 0.5155607, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_h7suj"]
 gradient = SubResource("Gradient_x4u1r")
+
+[sub_resource type="Gradient" id="Gradient_cccdv"]
+colors = PackedColorArray(0.76862746, 0.5254902, 0.09411765, 1, 0.9957836, 0.9714928, 0.8725431, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_x4u1r"]
+gradient = SubResource("Gradient_cccdv")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_x0drn"]
 
@@ -36,18 +36,18 @@ _data = {
 [node name="Mainmap" type="Node2D" unique_id=151565199]
 script = ExtResource("1_ifu8d")
 
-[node name="Background" type="Sprite2D" parent="." unique_id=1255627473]
-position = Vector2(268, 306)
-rotation = -1.5707965
-scale = Vector2(10.6, 8.213)
-texture = SubResource("GradientTexture2D_x4u1r")
-
-[node name="RequiredToView" type="Sprite2D" parent="Background" unique_id=1539363545]
+[node name="RequiredToView" type="Sprite2D" parent="." unique_id=1539363545]
 show_behind_parent = true
-position = Vector2(-1.6981142, -0.97406673)
-rotation = -1.5707964
-scale = Vector2(1.4748952, 1.732366)
+position = Vector2(263.8975, 242.15385)
+rotation = 3.1415925
+scale = Vector2(12.235113, 20.920773)
 texture = SubResource("GradientTexture2D_h7suj")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1255627473]
+position = Vector2(268, 226.7)
+rotation = -1.5707965
+scale = Vector2(13.105, 8.213)
+texture = SubResource("GradientTexture2D_x4u1r")
 
 [node name="Left" type="StaticBody2D" parent="." unique_id=437479823]
 position = Vector2(4, 285)
@@ -82,7 +82,7 @@ libraries/ = SubResource("AnimationLibrary_5ctcv")
 speed_scale = 3.0
 
 [node name="BallSpawner" parent="." unique_id=1389751439 instance=ExtResource("3_cccdv")]
-position = Vector2(268, 3)
+position = Vector2(253, -85)
 
 [node name="RightSpawner" type="Node2D" parent="." unique_id=2055569934]
 position = Vector2(531, 0)
@@ -94,8 +94,8 @@ position = Vector2(6, 0)
 position = Vector2(-9, 81)
 
 [node name="GameUi" parent="." unique_id=2004966527 instance=ExtResource("5_rjo7s")]
-offset_left = 36.0
-offset_top = -212.0
-offset_right = 36.0
-offset_bottom = -212.0
+offset_left = 24.0
+offset_top = -362.0
+offset_right = 24.0
+offset_bottom = -362.0
 scale = Vector2(0.9441985, 0.9158849)

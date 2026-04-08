@@ -3,6 +3,19 @@
 [ext_resource type="Texture2D" uid="uid://dqbep68j100n5" path="res://dashed_line.png" id="1_cpr33"]
 [ext_resource type="Script" uid="uid://5c1hcbdbyrnq" path="res://death_zone.gd" id="1_j53p1"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jvtl2"]
+size = Vector2(555.5, 5)
+
+[sub_resource type="Gradient" id="Gradient_j53p1"]
+colors = PackedColorArray(0.61, 0.1159, 0.255895, 0.45490196, 0.77, 0.21559997, 0.2710399, 0.34117648)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jvtl2"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_j53p1"]
+height = 10
+noise = SubResource("FastNoiseLite_jvtl2")
+color_ramp = SubResource("Gradient_j53p1")
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j53p1"]
 size = Vector2(555.5, 845)
 
@@ -20,11 +33,24 @@ texture_mode = 1
 begin_cap_mode = 2
 end_cap_mode = 2
 
+[node name="DeathZone" type="Area2D" parent="." unique_id=1206681847]
+position = Vector2(1, 35)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone" unique_id=1631643386]
+position = Vector2(279, -309)
+shape = SubResource("RectangleShape2D_jvtl2")
+
+[node name="Sprite2D" type="Sprite2D" parent="DeathZone" unique_id=980482684]
+position = Vector2(279.00003, -309.00003)
+scale = Vector2(1.0817815, -0.71923995)
+texture = SubResource("NoiseTexture2D_j53p1")
+
 [node name="AliveZone" type="Area2D" parent="." unique_id=1271297322]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AliveZone" unique_id=1694197386]
 position = Vector2(283, 422.5)
 shape = SubResource("RectangleShape2D_j53p1")
 
+[connection signal="body_entered" from="DeathZone" to="." method="_on_death_zone_body_entered"]
 [connection signal="body_entered" from="AliveZone" to="." method="body_is_in_alive_zone"]
 [connection signal="body_exited" from="AliveZone" to="." method="body_is_out_of_alive_zone"]

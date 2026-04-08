@@ -8,7 +8,7 @@ script = ExtResource("1_l7i2t")
 
 [node name="Line2D" type="Line2D" parent="." unique_id=1434716319]
 texture_repeat = 2
-points = PackedVector2Array(0, 0, 0, 630)
+points = PackedVector2Array(0, 0, 0, 720)
 width = 5.0
 texture = ExtResource("2_khuw3")
 texture_mode = 1

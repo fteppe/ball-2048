@@ -16,3 +16,8 @@ func body_is_in_alive_zone(body):
 	if body is Ball:
 		body.is_in_alive_zone()
 	pass # Replace with function body.
+
+
+func _on_death_zone_body_entered(body):
+	if body is Ball:
+		body.start_deah()

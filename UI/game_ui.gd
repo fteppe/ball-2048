@@ -11,6 +11,8 @@ func _ready():
 func _process(delta):
 	%Score.text = str(GameModeBall.get_score())
 	%ScoreProgress.value = GameModeBall.get_score()
+	%MaxRank.text = str(GameModeBall.get_max_ball_size())
+	%MaxLevel.text = str(GameModeBall.get_max_level())
 	pass
 
 func _on_level_up(new_level : int):

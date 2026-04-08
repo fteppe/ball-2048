@@ -14,7 +14,7 @@ offsets = PackedFloat32Array(0, 0.74550897, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.28235295, 1, 1, 1, 0)
 
 [sub_resource type="Gradient" id="Gradient_ltpa0"]
-colors = PackedColorArray(0.73393774, 0.7676126, 0.9174419, 1, 0.4998, 0.51, 0.50813, 1)
+colors = PackedColorArray(0.40316767, 0.5405016, 0.9769613, 1, 0.22883809, 0.50394523, 0.924952, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ltpa0"]
 
@@ -24,7 +24,7 @@ noise = SubResource("FastNoiseLite_ltpa0")
 color_ramp = SubResource("Gradient_ltpa0")
 
 [sub_resource type="Gradient" id="Gradient_lwtm8"]
-colors = PackedColorArray(0.4182377, 0.6019757, 1, 1, 0.1609742, 1.540184e-06, 0.888176, 1)
+colors = PackedColorArray(0.0067329146, 0.21827388, 0.9402952, 1, 0, 0.34685528, 0.57178676, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_hqqrp"]
 gradient = SubResource("Gradient_lwtm8")
@@ -36,6 +36,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 81.0
+offset_top = -20.0
+offset_right = 81.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ltpa0")
@@ -64,7 +68,7 @@ text = "0"
 label_settings = ExtResource("2_hqqrp")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="VBoxContainer/HBoxContainer/CurrentLevel" unique_id=2098568245]
-position = Vector2(12, 13)
+position = Vector2(14, 36)
 emitting = false
 amount = 20
 texture = ExtResource("2_lwtm8")
@@ -85,6 +89,49 @@ scale_amount_min = 0.1
 scale_amount_max = 0.1
 scale_amount_curve = SubResource("Curve_hqqrp")
 color_ramp = SubResource("Gradient_dgedd")
+
+[node name="BoxContainer" type="BoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=1031525211]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=790839144]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=286151211]
+layout_mode = 2
+
+[node name="MaxLevelTxt" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer2" unique_id=1582833890]
+layout_mode = 2
+text = "Max Level:"
+label_settings = ExtResource("4_dgedd")
+horizontal_alignment = 2
+
+[node name="BoxContainer" type="BoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer2" unique_id=2084151994]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MaxLevel" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer2" unique_id=22183072]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = ExtResource("4_dgedd")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=723547238]
+layout_mode = 2
+
+[node name="MaxRankTxt" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer" unique_id=1995050805]
+layout_mode = 2
+text = "Max Ball:"
+label_settings = ExtResource("4_dgedd")
+horizontal_alignment = 2
+
+[node name="BoxContainer" type="BoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer" unique_id=2051026914]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MaxRank" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer" unique_id=1634554707]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = ExtResource("4_dgedd")
 
 [node name="ScoreProgress" type="TextureProgressBar" parent="VBoxContainer" unique_id=1003007789]
 unique_name_in_owner = true

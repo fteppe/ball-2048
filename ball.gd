@@ -19,9 +19,17 @@ var is_dying : bool = false
 func get_radius():
 	return ($CollisionShape2D.shape as CircleShape2D).radius
 
+func set_ball_number(number : int):
+	%BallNumber.text = str(number)
+	var font_size = 59
+	%BallNumber.add_theme_font_size_override("normal_font_size", font_size)
+	while %BallNumber.get_theme_font("normal_font").get_string_size(%BallNumber.text,%BallNumber.horizontal_alignment, -1, font_size).x > %BallNumber.get_content_width():
+		font_size -= 1
+		%BallNumber.add_theme_font_size_override("normal_font_size", font_size)
+
 func update_size_from_rank():
 	size = pow(2, rank - 1)
-	$Visuals/VisualAnimRoot/Label.text = str(size)
+	set_ball_number(size)
 	var radius_from_rank =  0.3 + rank * 0.2
 	var collider_radius =  radius_from_rank * initial_collider_radius
 	($CollisionShape2D.shape as CircleShape2D).radius = collider_radius
@@ -83,7 +91,7 @@ func _process(delta):
 func _on_body_entered(body : Area2D):
 	if body.get_parent() is Ball:
 		var ball : Ball = body.get_parent()  as Ball
-		if ball.rank == self.rank && !ball.is_queued_for_deletion() && !self.is_queued_for_deletion():
+		if ball.rank == self.rank && !ball.is_queued_for_deletion() && !self.is_queued_for_deletion() && !GameModeBall.get_game_is_over():
 			rank_up(ball)
 	pass # Replace with function body.
 	

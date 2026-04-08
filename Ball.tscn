@@ -12,12 +12,6 @@ bounce = 0.1
 resource_local_to_scene = true
 radius = 52.0
 
-[sub_resource type="LabelSettings" id="LabelSettings_lww6v"]
-font_size = 50
-shadow_size = 10
-shadow_color = Color(0, 0, 0, 0.5803922)
-shadow_offset = Vector2(0, 0)
-
 [sub_resource type="Curve" id="Curve_3tj6u"]
 _data = [Vector2(0, 0.009793282), 0.0, 0.0, 0, 0, Vector2(0.35833332, 0.9009793), 0.0, 0.0, 0, 0, Vector2(1, 0.476605), 0.0, 0.0, 0, 0]
 point_count = 3
@@ -156,7 +150,7 @@ physics_material_override = SubResource("PhysicsMaterial_lww6v")
 contact_monitor = true
 max_contacts_reported = 5
 script = ExtResource("1_gk6bx")
-rank_colors = Array[Color]([Color(0.48061204, 0.9063473, 0.79755753, 1), Color(0.8352941, 0.3647059, 0.8352941, 1), Color(0.37187076, 0.60296965, 0.19721377, 1), Color(0.9624992, 0.5815046, 0.76940507, 1), Color(0.99997157, 0.20193419, 0.23817876, 1), Color(0.83633524, 0.5503081, 0.16439548, 1), Color(0.64413893, 0.25625288, 0.7665255, 1), Color(0.70863754, 0.27085412, 0.24895573, 1), Color(0.03973795, 0.27457255, 0.59364635, 1), Color(0.612803, 0.616016, 0.43619314, 1), Color(0.6210991, 0.25205538, 1, 1), Color(0, 0.42719278, 0.38615578, 1), Color(0.98586756, 0, 0.51596737, 1), Color(0.91, 0.8554001, 0.09100003, 1)])
+rank_colors = Array[Color]([Color(0.48061204, 0.9063473, 0.79755753, 1), Color(0.8352941, 0.3647059, 0.8352941, 1), Color(0.37187076, 0.60296965, 0.19721377, 1), Color(0.9624992, 0.5815046, 0.76940507, 1), Color(0.99997157, 0.20193419, 0.23817876, 1), Color(0.9, 0.53625, 0.026999973, 1), Color(0.64413893, 0.25625288, 0.7665255, 1), Color(0.70863754, 0.27085412, 0.24895573, 1), Color(0.03973795, 0.27457255, 0.59364635, 1), Color(0.612803, 0.616016, 0.43619314, 1), Color(0.6210991, 0.25205538, 1, 1), Color(0, 0.42719278, 0.38615578, 1), Color(0.98586756, 0, 0.51596737, 1), Color(0.91, 0.8554001, 0.09100003, 1)])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=704621146]
 shape = SubResource("CircleShape2D_pa54t")
@@ -169,18 +163,6 @@ shape = SubResource("CircleShape2D_pa54t")
 rotation = 1.7348574
 scale = Vector2(0.39925748, -0.4090889)
 texture = ExtResource("2_lww6v")
-
-[node name="Label" type="Label" parent="Visuals/VisualAnimRoot" unique_id=903129506]
-offset_left = -35.0
-offset_top = -34.0
-offset_right = 46.0
-offset_bottom = 35.0
-scale = Vector2(0.8361394, 0.9542944)
-offset_transform_enabled = true
-theme_override_font_sizes/font_size = 50
-text = "  1  "
-label_settings = SubResource("LabelSettings_lww6v")
-horizontal_alignment = 1
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Visuals/VisualAnimRoot" unique_id=1188966069]
 emitting = false
@@ -203,6 +185,29 @@ scale_amount_min = 0.1
 scale_amount_max = 0.1
 scale_amount_curve = SubResource("Curve_3tj6u")
 color_ramp = SubResource("Gradient_3tj6u")
+
+[node name="BallNumber" type="RichTextLabel" parent="Visuals/VisualAnimRoot" unique_id=325907794]
+unique_name_in_owner = true
+clip_contents = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 0
+theme_override_constants/outline_size = 13
+theme_override_font_sizes/normal_font_size = 59
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals" unique_id=663053933]
 libraries/ = SubResource("AnimationLibrary_sr3km")
