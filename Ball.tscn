@@ -21,6 +21,7 @@ offsets = PackedFloat32Array(0, 0.74550897, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.28235295, 1, 1, 1, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_3tj6u"]
+resource_local_to_scene = true
 font_size = 40
 outline_size = 12
 outline_color = Color(0.16206557, 0.1620656, 0.16206557, 1)
