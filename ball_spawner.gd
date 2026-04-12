@@ -35,8 +35,8 @@ func get_rank_to_generate():
 	#we chose the rank centered around the next epxected one, with some chance to pick something else
 	var random_normal_result = roundi(randfn(next_rank_to_gen_center, 2))
 	print("random_normal_result ",random_normal_result)
-	var rounded_in_range_value = posmod(random_normal_result - 1,max_rank_to_generate - 1) + 1
-	print("modulo of ", (random_normal_result - 1)," and ",(max_rank_to_generate - 1)," is ", posmod(random_normal_result - 1,max_rank_to_generate - 1))
+	var rounded_in_range_value = posmod(random_normal_result - 1, max_rank_to_generate) + 1
+	print("modulo of ", (random_normal_result - 1)," and ",max_rank_to_generate," is ", posmod(random_normal_result - 1,max_rank_to_generate))
 	var rank_to_generate = rounded_in_range_value
 	print("rank_to_generate ",rank_to_generate)
 	
