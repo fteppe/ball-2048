@@ -56,7 +56,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Settings" type="Button" parent="Main/HBoxContainer2" unique_id=316502220]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(55, 55)
 layout_mode = 2
 theme = ExtResource("2_h2x3y")
 theme_type_variation = &"FlatButton"
@@ -104,45 +104,6 @@ color_ramp = SubResource("Gradient_dgedd")
 [node name="BoxContainer" type="BoxContainer" parent="Main/HBoxContainer" unique_id=1031525211]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="Main/HBoxContainer" unique_id=790839144]
-layout_mode = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="Main/HBoxContainer/VBoxContainer2" unique_id=286151211]
-layout_mode = 2
-
-[node name="MaxLevelTxt" type="Label" parent="Main/HBoxContainer/VBoxContainer2/HBoxContainer2" unique_id=1582833890]
-layout_mode = 2
-text = "Max Level:"
-label_settings = ExtResource("4_dgedd")
-horizontal_alignment = 2
-
-[node name="BoxContainer" type="BoxContainer" parent="Main/HBoxContainer/VBoxContainer2/HBoxContainer2" unique_id=2084151994]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="MaxLevel" type="Label" parent="Main/HBoxContainer/VBoxContainer2/HBoxContainer2" unique_id=22183072]
-unique_name_in_owner = true
-layout_mode = 2
-label_settings = ExtResource("4_dgedd")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Main/HBoxContainer/VBoxContainer2" unique_id=723547238]
-layout_mode = 2
-
-[node name="MaxRankTxt" type="Label" parent="Main/HBoxContainer/VBoxContainer2/HBoxContainer" unique_id=1995050805]
-layout_mode = 2
-text = "Max Ball:"
-label_settings = ExtResource("4_dgedd")
-horizontal_alignment = 2
-
-[node name="BoxContainer" type="BoxContainer" parent="Main/HBoxContainer/VBoxContainer2/HBoxContainer" unique_id=2051026914]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="MaxRank" type="Label" parent="Main/HBoxContainer/VBoxContainer2/HBoxContainer" unique_id=1634554707]
-unique_name_in_owner = true
-layout_mode = 2
-label_settings = ExtResource("4_dgedd")
 
 [node name="ScoreProgress" type="TextureProgressBar" parent="Main" unique_id=1003007789]
 unique_name_in_owner = true

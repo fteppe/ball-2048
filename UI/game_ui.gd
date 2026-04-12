@@ -23,12 +23,6 @@ func _process(delta):
 	if current_score != %Score.text:
 		%Score.text = current_score
 	%ScoreProgress.value = GameModeBall.get_score()
-	var max_rank = str(GameModeBall.get_max_ball_size())
-	if max_rank != %MaxRank.text:
-		%MaxRank.text = str(GameModeBall.get_max_ball_size())
-	var max_level = str(GameModeBall.get_max_level())
-	if max_level != %MaxLevel.text:
-		%MaxLevel.text = str(GameModeBall.get_max_level())
 
 func _on_level_up(new_level : int):
 	%ScoreProgress.max_value = GameModeBall.get_score_to_reach()
@@ -50,6 +44,6 @@ func _on_timer_game_over_menu_timeout():
 	var game_over_name = "GameOverMenu"
 	if %PopupContainer.find_child(game_over_name, false, false) == null:
 		var game_over_menu : GameOverMenu = game_over_menu.instantiate()
-		game_over_menu.set_size_level( level, size_ball)
+		game_over_menu.set_size_level( size_ball, level)
 		%PopupContainer.add_child(game_over_menu)
 		game_over_menu.name =game_over_name

@@ -24,6 +24,9 @@ func _ready():
 func _game_over(ball :Ball):
 	game_is_over = true
 	
+func clear_save():
+	save_file = BallSaveFile.new()
+	save_file.save_to_file()
 
 func get_max_ball_size():
 	return save_file.max_rank_reached

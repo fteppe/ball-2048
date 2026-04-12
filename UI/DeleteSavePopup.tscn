@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bvag5841nbfgo"]
+
+[ext_resource type="PackedScene" uid="uid://c4jaqlwxs1mcl" path="res://UI/ValidatePopup.tscn" id="1_5h23d"]
+[ext_resource type="Script" uid="uid://cfhpa05on7pvn" path="res://UI/delete_save_popup.gd" id="1_m6rmw"]
+
+[node name="DeleteSavePopup" type="MarginContainer" unique_id=921143407]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.5
+offset_top = -54.5
+offset_right = 88.5
+offset_bottom = 54.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_m6rmw")
+
+[node name="ValidatePopup" parent="." unique_id=812468174 instance=ExtResource("1_5h23d")]
+layout_mode = 2
+main_text = "Are you sure you want to delete the save ?"
+
+[connection signal="on_validate" from="ValidatePopup" to="." method="_on_validate_popup_on_validate"]
