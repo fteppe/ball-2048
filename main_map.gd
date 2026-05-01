@@ -1,10 +1,33 @@
 extends Node2D
 class_name MainMap
 
+var shake_intensity : float = 0
+
+func generate_shake_anim():
+	var shake_anim : Animation= (%AnimationPlayer.get_animation("screen_shake") as Animation)
+	var animation_track : int = shake_anim.find_track("PlaygroundBalls/ShakeOffsetRoot:position", Animation.TYPE_VALUE)
+	var key_time : float = randf_range(0.2,0.3)
+	var offset_range = 40.
+	var rotation_range = 0.1
+	if animation_track >= 0:
+		print("generating shake")
+		while key_time < shake_anim.get_length() - 0.3:
+			var offset = Vector2(randf_range(-offset_range, offset_range), randf_range(-offset_range, offset_range))
+			shake_anim.track_insert_key(animation_track, key_time, offset)
+			key_time += randf_range(0.2,0.3)
+	key_time = randf_range(0.2,0.3)
+	animation_track = shake_anim.find_track("PlaygroundBalls/ShakeOffsetRoot:rotation", Animation.TYPE_VALUE)
+	if animation_track:
+		while key_time < shake_anim.get_length() - 0.3:
+			shake_anim.track_insert_key(animation_track, key_time, randf_range(-rotation_range, rotation_range))
+			key_time += randf_range(0.2,0.3)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameModeBall.reset_game_mode()
 	GameModeBall.ball_created.connect(ball_created)
+	generate_shake_anim()
+	
 	pass # Replace with function body.
 
 

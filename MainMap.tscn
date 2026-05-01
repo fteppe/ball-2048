@@ -35,76 +35,52 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_5ctcv"]
 length = 0.001
-tracks/0/type = "value"
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Playground:position")
-tracks/0/interp = 2
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlaygroundBalls/ShakeOffsetRoot:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Playground:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlaygroundBalls/ShakeOffsetRoot:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
 }
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"values": []
-}
 
 [sub_resource type="Animation" id="Animation_abjp3"]
 resource_name = "screen_shake"
-length = 2.9666667
-tracks/0/type = "value"
+length = 3.0
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Playground:position")
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2052632, 0.36666667, 0.53333336, 0.8163877, 1.0333333, 1.4666667, 1.7120817, 2.0333333, 2.3643, 2.9666667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(17.195, -49.202), Vector2(0, 0), Vector2(-15, -50), Vector2(0, 0), Vector2(-30, 40), Vector2(17.195, -49.202), Vector2(20, -20), Vector2(-10, 48.708), Vector2(15, 30), Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/path = NodePath("Playground:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(-5, 0, 0.33333334, 0.7, 1.2, 2.9666667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [-0.15009831567151274, 0.0, -0.29496064358704127, 0.21118483949131428, -0.05759586531581307, 0.0]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0, 2.9666667),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
@@ -114,6 +90,30 @@ tracks/2/keys = {
 "args": [],
 "method": &"on_end_shake"
 }]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlaygroundBalls/ShakeOffsetRoot:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlaygroundBalls/ShakeOffsetRoot:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7nwjn"]
@@ -132,55 +132,58 @@ rotation = 3.1415925
 scale = Vector2(12.235113, 20.920773)
 texture = SubResource("GradientTexture2D_h7suj")
 
-[node name="Playground" type="Node2D" parent="." unique_id=1797228341]
+[node name="PlaygroundBalls" type="Node2D" parent="." unique_id=1797228341]
+position = Vector2(280, 222)
 
-[node name="Background" type="Sprite2D" parent="Playground" unique_id=1255627473]
-position = Vector2(268, 280.255)
+[node name="ShakeOffsetRoot" type="Node2D" parent="PlaygroundBalls" unique_id=1998714346]
+
+[node name="Background" type="Sprite2D" parent="PlaygroundBalls/ShakeOffsetRoot" unique_id=1255627473]
+position = Vector2(3.0517578e-05, 0.25500488)
 rotation = -1.5707965
 scale = Vector2(11.335, 8.213)
 texture = SubResource("GradientTexture2D_x4u1r")
 
-[node name="Left" type="StaticBody2D" parent="Playground" unique_id=437479823]
+[node name="Left" type="StaticBody2D" parent="PlaygroundBalls/ShakeOffsetRoot" unique_id=437479823]
 unique_name_in_owner = true
-position = Vector2(4, 285)
+position = Vector2(-264, 5)
 rotation = 1.5707964
 physics_material_override = ExtResource("2_x4u1r")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Playground/Left" unique_id=1592641092]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlaygroundBalls/ShakeOffsetRoot/Left" unique_id=1592641092]
 shape = SubResource("WorldBoundaryShape2D_x0drn")
 
-[node name="Ground" type="StaticBody2D" parent="Playground" unique_id=311077774]
+[node name="Ground" type="StaticBody2D" parent="PlaygroundBalls/ShakeOffsetRoot" unique_id=311077774]
 unique_name_in_owner = true
-position = Vector2(311, 646)
+position = Vector2(43, 366)
 physics_material_override = ExtResource("2_x4u1r")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Playground/Ground" unique_id=849763620]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlaygroundBalls/ShakeOffsetRoot/Ground" unique_id=849763620]
 shape = SubResource("WorldBoundaryShape2D_x0drn")
 
-[node name="Right" type="StaticBody2D" parent="Playground" unique_id=477366918]
+[node name="Right" type="StaticBody2D" parent="PlaygroundBalls/ShakeOffsetRoot" unique_id=477366918]
 unique_name_in_owner = true
-position = Vector2(533, 313)
+position = Vector2(265, 33)
 rotation = -1.5707964
 physics_material_override = ExtResource("2_x4u1r")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Playground/Right" unique_id=131518884]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlaygroundBalls/ShakeOffsetRoot/Right" unique_id=131518884]
 shape = SubResource("WorldBoundaryShape2D_x0drn")
 
-[node name="BallSpawner" parent="Playground" unique_id=1389751439 instance=ExtResource("3_cccdv")]
+[node name="BallSpawner" parent="PlaygroundBalls/ShakeOffsetRoot" unique_id=1389751439 instance=ExtResource("3_cccdv")]
 unique_name_in_owner = true
-position = Vector2(253, -85)
+position = Vector2(-15, -365)
 
-[node name="RightSpawner" type="Node2D" parent="Playground" unique_id=2055569934]
+[node name="RightSpawner" type="Node2D" parent="PlaygroundBalls/ShakeOffsetRoot" unique_id=2055569934]
 unique_name_in_owner = true
-position = Vector2(531, 0)
+position = Vector2(263, -280)
 
-[node name="LeftSpawner" type="Node2D" parent="Playground" unique_id=1135056190]
+[node name="LeftSpawner" type="Node2D" parent="PlaygroundBalls/ShakeOffsetRoot" unique_id=1135056190]
 unique_name_in_owner = true
-position = Vector2(6, 0)
+position = Vector2(-262, -280)
 
-[node name="DeathZone" parent="Playground" unique_id=1998797930 instance=ExtResource("5_h7suj")]
+[node name="DeathZone" parent="PlaygroundBalls/ShakeOffsetRoot" unique_id=1998797930 instance=ExtResource("5_h7suj")]
 unique_name_in_owner = true
-position = Vector2(-9, 81)
+position = Vector2(-277, -199)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1568816171]
 position = Vector2(265, 202)

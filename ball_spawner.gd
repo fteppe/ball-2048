@@ -47,7 +47,7 @@ func _unhandled_input(event):
 				self.remove_child(held_ball)
 				held_ball = null
 				last_dropped_ball.global_position = $SpawnPoint.global_position
-				self.get_parent().get_parent().add_child(last_dropped_ball)
+				self.get_parent().get_parent().get_parent().add_child(last_dropped_ball)
 
 func get_held_ball_radius() :
 	if held_ball:
