@@ -39,7 +39,7 @@ func update_visual_from_rank(forced_radius : float):
 	$Visuals.scale = Vector2(radius_from_rank, radius_from_rank)
 	var color_from_rank = rank_colors[clamp(rank - 1, 0 , rank_colors.size() - 1)]
 	$Visuals/VisualAnimRoot/Sprite2D.modulate = color_from_rank
-	$Visuals/VisualAnimRoot/CPUParticles2D.modulate = color_from_rank
+	#$Visuals/VisualAnimRoot/CPUParticles2D.modulate = color_from_rank
 	self.set_mass(radius_from_rank * radius_from_rank)
 
 func rank_up(other_ball : Ball):

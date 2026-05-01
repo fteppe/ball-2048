@@ -94,7 +94,7 @@ func reset_game_mode():
 func _level_up():
 	current_score = max(0 , current_score - get_score_to_reach())
 	current_level += 1
-	if current_level % 1 == 0:
+	if current_level % 10 == 0:
 		GameModeBall.available_shakes += 1
 	if save_file.max_level_reached < current_level:
 		save_file.max_level_reached = current_level
