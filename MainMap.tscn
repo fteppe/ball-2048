@@ -145,33 +145,59 @@ rotation = -1.5707965
 scale = Vector2(11.335, 8.213)
 texture = SubResource("GradientTexture2D_x4u1r")
 
-[node name="Left" type="AnimatableBody2D" parent="GameWorld/PlaygroundBalls/ShakeOffsetRoot" unique_id=120486661]
+[node name="DynamicWalls" type="Node2D" parent="GameWorld/PlaygroundBalls/ShakeOffsetRoot" unique_id=1988445785]
 unique_name_in_owner = true
+
+[node name="Left" type="AnimatableBody2D" parent="GameWorld/PlaygroundBalls/ShakeOffsetRoot/DynamicWalls" unique_id=120486661]
 position = Vector2(-264, 5)
 rotation = 1.5707964
 physics_material_override = ExtResource("2_x4u1r")
 sync_to_physics = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/PlaygroundBalls/ShakeOffsetRoot/Left" unique_id=1592641092]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/PlaygroundBalls/ShakeOffsetRoot/DynamicWalls/Left" unique_id=1592641092]
 shape = SubResource("WorldBoundaryShape2D_x0drn")
 
-[node name="Ground" type="AnimatableBody2D" parent="GameWorld/PlaygroundBalls/ShakeOffsetRoot" unique_id=1130301241]
-unique_name_in_owner = true
+[node name="Ground" type="AnimatableBody2D" parent="GameWorld/PlaygroundBalls/ShakeOffsetRoot/DynamicWalls" unique_id=1130301241]
 position = Vector2(43, 366)
 physics_material_override = ExtResource("2_x4u1r")
 sync_to_physics = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/PlaygroundBalls/ShakeOffsetRoot/Ground" unique_id=849763620]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/PlaygroundBalls/ShakeOffsetRoot/DynamicWalls/Ground" unique_id=849763620]
 shape = SubResource("WorldBoundaryShape2D_x0drn")
 
-[node name="Right" type="AnimatableBody2D" parent="GameWorld/PlaygroundBalls/ShakeOffsetRoot" unique_id=845813325]
-unique_name_in_owner = true
+[node name="Right" type="AnimatableBody2D" parent="GameWorld/PlaygroundBalls/ShakeOffsetRoot/DynamicWalls" unique_id=845813325]
 position = Vector2(265, 33)
 rotation = -1.5707964
 physics_material_override = ExtResource("2_x4u1r")
 sync_to_physics = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/PlaygroundBalls/ShakeOffsetRoot/Right" unique_id=131518884]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/PlaygroundBalls/ShakeOffsetRoot/DynamicWalls/Right" unique_id=131518884]
+shape = SubResource("WorldBoundaryShape2D_x0drn")
+
+[node name="StaticWalls" type="Node2D" parent="GameWorld/PlaygroundBalls/ShakeOffsetRoot" unique_id=791189956]
+unique_name_in_owner = true
+
+[node name="Left" type="StaticBody2D" parent="GameWorld/PlaygroundBalls/ShakeOffsetRoot/StaticWalls" unique_id=124530584]
+position = Vector2(-264, 5)
+rotation = 1.5707964
+physics_material_override = ExtResource("2_x4u1r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/PlaygroundBalls/ShakeOffsetRoot/StaticWalls/Left" unique_id=1373135659]
+shape = SubResource("WorldBoundaryShape2D_x0drn")
+
+[node name="Ground" type="StaticBody2D" parent="GameWorld/PlaygroundBalls/ShakeOffsetRoot/StaticWalls" unique_id=1220480940]
+position = Vector2(43, 366)
+physics_material_override = ExtResource("2_x4u1r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/PlaygroundBalls/ShakeOffsetRoot/StaticWalls/Ground" unique_id=335266034]
+shape = SubResource("WorldBoundaryShape2D_x0drn")
+
+[node name="Right" type="StaticBody2D" parent="GameWorld/PlaygroundBalls/ShakeOffsetRoot/StaticWalls" unique_id=658239111]
+position = Vector2(265, 33)
+rotation = -1.5707964
+physics_material_override = ExtResource("2_x4u1r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/PlaygroundBalls/ShakeOffsetRoot/StaticWalls/Right" unique_id=1084703531]
 shape = SubResource("WorldBoundaryShape2D_x0drn")
 
 [node name="BallSpawner" parent="GameWorld/PlaygroundBalls/ShakeOffsetRoot" unique_id=1389751439 instance=ExtResource("3_cccdv")]
