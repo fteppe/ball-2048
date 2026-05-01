@@ -5,7 +5,7 @@ var shake_intensity : float = 0
 
 func generate_shake_anim():
 	var shake_anim : Animation= (%AnimationPlayer.get_animation("screen_shake") as Animation)
-	var animation_track : int = shake_anim.find_track("PlaygroundBalls/ShakeOffsetRoot:position", Animation.TYPE_VALUE)
+	var animation_track : int = shake_anim.find_track("GameWorld/PlaygroundBalls/ShakeOffsetRoot:position", Animation.TYPE_VALUE)
 	var key_time : float = randf_range(0.2,0.3)
 	var offset_range = 40.
 	var rotation_range = 0.1
@@ -16,7 +16,7 @@ func generate_shake_anim():
 			shake_anim.track_insert_key(animation_track, key_time, offset)
 			key_time += randf_range(0.2,0.3)
 	key_time = randf_range(0.2,0.3)
-	animation_track = shake_anim.find_track("PlaygroundBalls/ShakeOffsetRoot:rotation", Animation.TYPE_VALUE)
+	animation_track = shake_anim.find_track("GameWorld/PlaygroundBalls/ShakeOffsetRoot:rotation", Animation.TYPE_VALUE)
 	if animation_track:
 		while key_time < shake_anim.get_length() - 0.3:
 			shake_anim.track_insert_key(animation_track, key_time, randf_range(-rotation_range, rotation_range))

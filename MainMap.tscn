@@ -49,7 +49,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PlaygroundBalls/ShakeOffsetRoot:position")
+tracks/1/path = NodePath("GameWorld/PlaygroundBalls/ShakeOffsetRoot:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -61,7 +61,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PlaygroundBalls/ShakeOffsetRoot:rotation")
+tracks/2/path = NodePath("GameWorld/PlaygroundBalls/ShakeOffsetRoot:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -94,7 +94,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PlaygroundBalls/ShakeOffsetRoot:position")
+tracks/1/path = NodePath("GameWorld/PlaygroundBalls/ShakeOffsetRoot:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -106,7 +106,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PlaygroundBalls/ShakeOffsetRoot:rotation")
+tracks/2/path = NodePath("GameWorld/PlaygroundBalls/ShakeOffsetRoot:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -125,63 +125,68 @@ _data = {
 [node name="Mainmap" type="Node2D" unique_id=151565199]
 script = ExtResource("1_ifu8d")
 
-[node name="RequiredToView" type="Sprite2D" parent="." unique_id=1539363545]
+[node name="GameWorld" type="Node2D" parent="." unique_id=1503099654]
+
+[node name="RequiredToView" type="Sprite2D" parent="GameWorld" unique_id=1539363545]
 show_behind_parent = true
 position = Vector2(263.8975, 242.15385)
 rotation = 3.1415925
 scale = Vector2(12.235113, 20.920773)
 texture = SubResource("GradientTexture2D_h7suj")
 
-[node name="PlaygroundBalls" type="Node2D" parent="." unique_id=1797228341]
+[node name="PlaygroundBalls" type="Node2D" parent="GameWorld" unique_id=1797228341]
 position = Vector2(280, 222)
 
-[node name="ShakeOffsetRoot" type="Node2D" parent="PlaygroundBalls" unique_id=1998714346]
+[node name="ShakeOffsetRoot" type="Node2D" parent="GameWorld/PlaygroundBalls" unique_id=1998714346]
 
-[node name="Background" type="Sprite2D" parent="PlaygroundBalls/ShakeOffsetRoot" unique_id=1255627473]
+[node name="Background" type="Sprite2D" parent="GameWorld/PlaygroundBalls/ShakeOffsetRoot" unique_id=1255627473]
 position = Vector2(3.0517578e-05, 0.25500488)
 rotation = -1.5707965
 scale = Vector2(11.335, 8.213)
 texture = SubResource("GradientTexture2D_x4u1r")
 
-[node name="Left" type="StaticBody2D" parent="PlaygroundBalls/ShakeOffsetRoot" unique_id=437479823]
+[node name="Left" type="AnimatableBody2D" parent="GameWorld/PlaygroundBalls/ShakeOffsetRoot" unique_id=120486661]
 unique_name_in_owner = true
 position = Vector2(-264, 5)
 rotation = 1.5707964
 physics_material_override = ExtResource("2_x4u1r")
+sync_to_physics = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlaygroundBalls/ShakeOffsetRoot/Left" unique_id=1592641092]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/PlaygroundBalls/ShakeOffsetRoot/Left" unique_id=1592641092]
 shape = SubResource("WorldBoundaryShape2D_x0drn")
 
-[node name="Ground" type="StaticBody2D" parent="PlaygroundBalls/ShakeOffsetRoot" unique_id=311077774]
+[node name="Ground" type="AnimatableBody2D" parent="GameWorld/PlaygroundBalls/ShakeOffsetRoot" unique_id=1130301241]
 unique_name_in_owner = true
 position = Vector2(43, 366)
 physics_material_override = ExtResource("2_x4u1r")
+sync_to_physics = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlaygroundBalls/ShakeOffsetRoot/Ground" unique_id=849763620]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/PlaygroundBalls/ShakeOffsetRoot/Ground" unique_id=849763620]
 shape = SubResource("WorldBoundaryShape2D_x0drn")
 
-[node name="Right" type="StaticBody2D" parent="PlaygroundBalls/ShakeOffsetRoot" unique_id=477366918]
+[node name="Right" type="AnimatableBody2D" parent="GameWorld/PlaygroundBalls/ShakeOffsetRoot" unique_id=845813325]
 unique_name_in_owner = true
 position = Vector2(265, 33)
 rotation = -1.5707964
 physics_material_override = ExtResource("2_x4u1r")
+sync_to_physics = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlaygroundBalls/ShakeOffsetRoot/Right" unique_id=131518884]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameWorld/PlaygroundBalls/ShakeOffsetRoot/Right" unique_id=131518884]
 shape = SubResource("WorldBoundaryShape2D_x0drn")
 
-[node name="BallSpawner" parent="PlaygroundBalls/ShakeOffsetRoot" unique_id=1389751439 instance=ExtResource("3_cccdv")]
+[node name="BallSpawner" parent="GameWorld/PlaygroundBalls/ShakeOffsetRoot" unique_id=1389751439 instance=ExtResource("3_cccdv")]
 unique_name_in_owner = true
 position = Vector2(-15, -365)
 
-[node name="RightSpawner" type="Node2D" parent="PlaygroundBalls/ShakeOffsetRoot" unique_id=2055569934]
+[node name="RightSpawner" type="Node2D" parent="GameWorld/PlaygroundBalls/ShakeOffsetRoot" unique_id=2055569934]
 unique_name_in_owner = true
 position = Vector2(263, -280)
 
-[node name="LeftSpawner" type="Node2D" parent="PlaygroundBalls/ShakeOffsetRoot" unique_id=1135056190]
+[node name="LeftSpawner" type="Node2D" parent="GameWorld/PlaygroundBalls/ShakeOffsetRoot" unique_id=1135056190]
 unique_name_in_owner = true
 position = Vector2(-262, -280)
 
-[node name="DeathZone" parent="PlaygroundBalls/ShakeOffsetRoot" unique_id=1998797930 instance=ExtResource("5_h7suj")]
+[node name="DeathZone" parent="GameWorld/PlaygroundBalls/ShakeOffsetRoot" unique_id=1998797930 instance=ExtResource("5_h7suj")]
 unique_name_in_owner = true
 position = Vector2(-277, -199)
 

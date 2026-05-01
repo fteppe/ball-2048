@@ -74,7 +74,7 @@ func get_game_is_over():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if game_is_over && get_tree().get_nodes_in_group("balls").is_empty() && game_over_signal_emitted == false:
+	if game_is_over && get_tree().get_nodes_in_group("balls").size() <= 1 && game_over_signal_emitted == false:
 		game_over.emit(current_level, current_biggest_ball)
 		game_over_signal_emitted = true
 	pass

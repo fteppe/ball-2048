@@ -194,6 +194,6 @@ unique_name_in_owner = true
 wait_time = 0.1
 one_shot = true
 
-[connection signal="pressed" from="Main/Top/HBoxContainer2/Settings" to="Main" method="_on_settings_pressed"]
+[connection signal="pressed" from="Main/Top/HBoxContainer2/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="Main/Bottom/HBoxContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="timeout" from="TimerGameOverMenu" to="Main" method="_on_timer_game_over_menu_timeout"]
+[connection signal="timeout" from="TimerGameOverMenu" to="." method="_on_timer_game_over_menu_timeout"]
