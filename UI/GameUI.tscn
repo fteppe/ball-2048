@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://n4qt68lfitba" path="res://smoke.png" id="2_lwtm8"]
 [ext_resource type="LabelSettings" uid="uid://c4proeq7yvdnb" path="res://UI/score_label_setting.tres" id="4_dgedd"]
 [ext_resource type="PackedScene" uid="uid://jksh0yo7xda2" path="res://Ball.tscn" id="7_h2x3y"]
+[ext_resource type="SpriteFrames" path="res://Particles/StarBlow.tres" id="8_flmfk"]
 
 [sub_resource type="Curve" id="Curve_hqqrp"]
 _data = [Vector2(0, 0.009793282), 0.0, 0.0, 0, 0, Vector2(0.35833332, 0.9009793), 0.0, 0.0, 0, 0, Vector2(1, 0.476605), 0.0, 0.0, 0, 0]
@@ -175,10 +176,18 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Button" type="Button" parent="Main/Bottom/HBoxContainer" unique_id=116871482]
+[node name="ShakeButton" type="Button" parent="Main/Bottom/HBoxContainer" unique_id=116871482]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("2_h2x3y")
-text = "SHAKE"
+text = "SHAKE : 3"
+
+[node name="ShakeFlash" type="AnimatedSprite2D" parent="Main/Bottom/HBoxContainer/ShakeButton" unique_id=786078914]
+unique_name_in_owner = true
+position = Vector2(132, 26)
+sprite_frames = ExtResource("8_flmfk")
+frame = 3
+frame_progress = 1.0
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=1290210008]
 layout_mode = 2
@@ -195,5 +204,5 @@ wait_time = 0.1
 one_shot = true
 
 [connection signal="pressed" from="Main/Top/HBoxContainer2/Settings" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="Main/Bottom/HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Main/Bottom/HBoxContainer/ShakeButton" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="TimerGameOverMenu" to="." method="_on_timer_game_over_menu_timeout"]

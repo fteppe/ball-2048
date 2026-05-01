@@ -8,6 +8,7 @@ signal game_over(level : int, max_size : int)
 @export var level_scores : Array[int]
 @export var death_time : float = 5.
 var save_file : BallSaveFile
+@export var available_shakes : int = 1
 
 var current_score : int = 0
 var current_level : int = 0
@@ -93,6 +94,8 @@ func reset_game_mode():
 func _level_up():
 	current_score = max(0 , current_score - get_score_to_reach())
 	current_level += 1
+	if current_level % 1 == 0:
+		GameModeBall.available_shakes += 1
 	if save_file.max_level_reached < current_level:
 		save_file.max_level_reached = current_level
 		save_file.save_to_file()

@@ -13,6 +13,7 @@ func _ready():
 	GameModeBall.level_up.connect(_on_level_up)
 	GameModeBall.game_over.connect(_game_over)
 	%NextBall.process_mode = Node.PROCESS_MODE_DISABLED
+	_update_shake_button()
 
 func _game_over(level_in : int, size_in : int):
 	level = level_in
@@ -33,8 +34,13 @@ func _process(delta):
 func _on_level_up(new_level : int):
 	%ScoreProgress.max_value = GameModeBall.get_score_to_reach()
 	%CurrentLevel.text = str(GameModeBall.get_level())
+	_update_shake_button()
 	%LevelParticles.restart()
 
+func _update_shake_button():
+	%ShakeButton.text = "SHAKE : " + str(GameModeBall.available_shakes)
+	%ShakeButton.disabled = GameModeBall.available_shakes <= 0
+	%ShakeFlash.play("default")
 
 func _on_settings_pressed():
 	var settings_name = "SettingsMenu"
@@ -56,5 +62,7 @@ func _on_timer_game_over_menu_timeout():
 
 
 func _on_button_pressed():
+	GameModeBall.available_shakes -= 1
 	shake_screen.emit()
+	_update_shake_button()
 	pass # Replace with function body.
