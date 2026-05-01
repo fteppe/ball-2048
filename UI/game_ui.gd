@@ -10,6 +10,7 @@ var size_ball : int = 0
 func _ready():
 	GameModeBall.level_up.connect(_on_level_up)
 	GameModeBall.game_over.connect(_game_over)
+	%NextBall.process_mode = Node.PROCESS_MODE_DISABLED
 
 func _game_over(level_in : int, size_in : int):
 	level = level_in
@@ -19,6 +20,9 @@ func _game_over(level_in : int, size_in : int):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if GameModeBall.get_next_ball_rank() != %NextBall.rank:
+		%NextBall.rank = GameModeBall.get_next_ball_rank()
+		%NextBall.update_visual_from_rank(1.5)
 	var current_score = str(GameModeBall.get_score())
 	if current_score != %Score.text:
 		%Score.text = current_score

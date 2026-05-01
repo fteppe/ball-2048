@@ -6,42 +6,16 @@ var is_held : bool = false
 var last_dropped_ball : Ball
 var held_ball : Ball
 
-var max_rank_reached : int = 1
-var last_generated_rank : int = 1
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	generate_ball()
 	GameModeBall.ball_died.connect(_game_over)
-	GameModeBall.ball_created.connect(ball_created)
 	pass # Replace with function body.
 
 func _game_over(ball : Ball):
 	if held_ball:
 		held_ball.queue_free()
 		held_ball = null
-
-func ball_created(ball : Ball):
-	max_rank_reached = max(max_rank_reached, ball.rank)
-
-func get_rank_to_generate():
-	var max_rank_starter = 3
-	var max_rank_to_generate = max(max_rank_reached/2, max_rank_starter)
-	var max_rank_to_loop = max(max_rank_to_generate / 2, max_rank_starter)
-	var next_rank_to_gen_center = last_generated_rank + 1
-	if next_rank_to_gen_center > max_rank_to_loop: #we loop around
-		next_rank_to_gen_center = 1
-	print("rank center is ", next_rank_to_gen_center, " max rank is ", max_rank_to_generate)
-	#we chose the rank centered around the next epxected one, with some chance to pick something else
-	var random_normal_result = roundi(randfn(next_rank_to_gen_center, 2))
-	print("random_normal_result ",random_normal_result)
-	var rounded_in_range_value = posmod(random_normal_result - 1, max_rank_to_generate) + 1
-	print("modulo of ", (random_normal_result - 1)," and ",max_rank_to_generate," is ", posmod(random_normal_result - 1,max_rank_to_generate))
-	var rank_to_generate = rounded_in_range_value
-	print("rank_to_generate ",rank_to_generate)
-	
-	last_generated_rank = rank_to_generate
-	return rank_to_generate
 
 func generate_ball():
 	if held_ball:
@@ -51,7 +25,7 @@ func generate_ball():
 		last_dropped_ball.ball_destroyed_in_merge.disconnect(ball_collided)
 	last_dropped_ball = null
 	held_ball = ball_scene.instantiate()
-	held_ball.rank = get_rank_to_generate()
+	held_ball.rank = GameModeBall.pop_next_ball_rank()
 	self.call_deferred("add_child", held_ball)
 	held_ball.process_mode = Node.PROCESS_MODE_DISABLED
 

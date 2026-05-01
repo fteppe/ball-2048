@@ -27,15 +27,19 @@ func set_ball_number(number : int):
 	var label_settings = (%BallNumber.label_settings as LabelSettings)
 	label_settings.font_size = ball_number_digit_to_font[%BallNumber.text.length()]
 
-func update_size_from_rank():
+func update_visual_from_rank(forced_radius : float):
 	size = pow(2, rank - 1)
 	set_ball_number(size)
 	var radius_from_rank =  0.3 + rank * 0.2
+	if forced_radius > 0:
+		radius_from_rank = forced_radius
 	var collider_radius =  radius_from_rank * initial_collider_radius
 	($CollisionShape2D.shape as CircleShape2D).radius = collider_radius
 	($Area2D/CollisionShape2D.shape as CircleShape2D).radius = collider_radius + 5
 	$Visuals.scale = Vector2(radius_from_rank, radius_from_rank)
-	$Visuals/VisualAnimRoot/Sprite2D.modulate = rank_colors[clamp(rank - 1, 0 , rank_colors.size() - 1)]
+	var color_from_rank = rank_colors[clamp(rank - 1, 0 , rank_colors.size() - 1)]
+	$Visuals/VisualAnimRoot/Sprite2D.modulate = color_from_rank
+	$Visuals/VisualAnimRoot/CPUParticles2D.modulate = color_from_rank
 	self.set_mass(radius_from_rank * radius_from_rank)
 
 func rank_up(other_ball : Ball):
@@ -54,7 +58,7 @@ func rank_up(other_ball : Ball):
 	self.queue_free()
 
 func on_ball_fused():
-	update_size_from_rank()
+	update_visual_from_rank(-1.)
 	GameModeBall.ball_created.emit(self)
 	$Visuals/AnimationPlayer.play("fuze_anim")
 	$Visuals/VisualAnimRoot/CPUParticles2D.restart()
@@ -64,7 +68,7 @@ func _ready():
 	initial_rotation = $Visuals/VisualAnimRoot/Sprite2D.global_rotation
 	initial_collider_radius = 51
 	GameModeBall.ball_died.connect(game_over)
-	update_size_from_rank()
+	update_visual_from_rank(-1.)
 	start_living = Time.get_ticks_msec()
 	pass # Replace with function body.
 

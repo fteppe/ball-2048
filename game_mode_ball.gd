@@ -15,9 +15,35 @@ var current_biggest_ball : int = 0
 var game_is_over : bool = false
 var game_over_signal_emitted = false
 
+var next_ball_rank : int = 1;
+var max_rank_reached : int = 1
+
+func get_next_ball_rank():
+	return next_ball_rank
+
+func pop_next_ball_rank() -> int:
+	var last_generated_rank = next_ball_rank
+	var max_rank_starter = 3
+	var max_rank_to_generate = max(max_rank_reached/2, max_rank_starter)
+	var max_rank_to_loop = max(max_rank_to_generate / 2, max_rank_starter)
+	var next_rank_to_gen_center = last_generated_rank + 1
+	if next_rank_to_gen_center > max_rank_to_loop: #we loop around
+		next_rank_to_gen_center = 1
+	print("rank center is ", next_rank_to_gen_center, " max rank is ", max_rank_to_generate)
+	#we chose the rank centered around the next epxected one, with some chance to pick something else
+	var random_normal_result = roundi(randfn(next_rank_to_gen_center, 2))
+	print("random_normal_result ",random_normal_result)
+	var rounded_in_range_value = posmod(random_normal_result - 1, max_rank_to_generate) + 1
+	print("modulo of ", (random_normal_result - 1)," and ",max_rank_to_generate," is ", posmod(random_normal_result - 1,max_rank_to_generate))
+	var rank_to_generate = rounded_in_range_value
+	print("rank_to_generate ",rank_to_generate)
+	next_ball_rank = rank_to_generate
+	return last_generated_rank
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	ball_died.connect(_game_over)
+	self.pop_next_ball_rank()
 	save_file = BallSaveFile.load_from_file()
 	pass # Replace with function body.
 
@@ -76,6 +102,7 @@ func _on_ball_created(ball : Ball):
 	var ball_size =  pow(2, ball.rank - 1)
 	current_score += ball_size
 	current_biggest_ball = max(ball_size, current_biggest_ball)
+	max_rank_reached = max(max_rank_reached, ball.rank)
 	if save_file.max_rank_reached < ball_size:
 		save_file.max_rank_reached = ball_size
 		save_file.save_to_file()

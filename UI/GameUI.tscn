@@ -6,6 +6,7 @@
 [ext_resource type="LabelSettings" uid="uid://c7ymu8c42xqdy" path="res://UI/level_label_settings.tres" id="2_hqqrp"]
 [ext_resource type="Texture2D" uid="uid://n4qt68lfitba" path="res://smoke.png" id="2_lwtm8"]
 [ext_resource type="LabelSettings" uid="uid://c4proeq7yvdnb" path="res://UI/score_label_setting.tres" id="4_dgedd"]
+[ext_resource type="PackedScene" uid="uid://jksh0yo7xda2" path="res://Ball.tscn" id="7_h2x3y"]
 
 [sub_resource type="Curve" id="Curve_hqqrp"]
 _data = [Vector2(0, 0.009793282), 0.0, 0.0, 0, 0, Vector2(0.35833332, 0.9009793), 0.0, 0.0, 0, 0, Vector2(1, 0.476605), 0.0, 0.0, 0, 0]
@@ -124,6 +125,38 @@ text = "Score"
 label_settings = ExtResource("4_dgedd")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Main" unique_id=1406380058]
+layout_mode = 2
+
+[node name="BoxContainer" type="BoxContainer" parent="Main/HBoxContainer3" unique_id=241516663]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Main/HBoxContainer3" unique_id=1271175702]
+layout_mode = 2
+text = "NextBall:"
+label_settings = ExtResource("4_dgedd")
+
+[node name="BoxContainer2" type="BoxContainer" parent="Main/HBoxContainer3" unique_id=807416491]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="NextBallRoot" type="Control" parent="Main/HBoxContainer3/BoxContainer2" unique_id=2016928984]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="NextBall" parent="Main/HBoxContainer3/BoxContainer2/NextBallRoot" unique_id=1929847300 instance=ExtResource("7_h2x3y")]
+unique_name_in_owner = true
+scale = Vector2(0.3, 0.305)
+collision_layer = 0
+collision_mask = 0
+sleeping = true
+lock_rotation = true
+freeze = true
+rank = -1
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=1290210008]
 layout_mode = 2
