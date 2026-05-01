@@ -43,20 +43,22 @@ grow_vertical = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 5
+script = ExtResource("1_ltpa0")
 
 [node name="Main" type="VBoxContainer" parent="." unique_id=1322289702]
 layout_mode = 2
-size_flags_vertical = 0
-script = ExtResource("1_ltpa0")
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Main" unique_id=221791337]
+[node name="Top" type="VBoxContainer" parent="Main" unique_id=1680881482]
 layout_mode = 2
 
-[node name="BoxContainer" type="BoxContainer" parent="Main/HBoxContainer2" unique_id=102396368]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Main/Top" unique_id=221791337]
+layout_mode = 2
+
+[node name="BoxContainer" type="BoxContainer" parent="Main/Top/HBoxContainer2" unique_id=102396368]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Settings" type="Button" parent="Main/HBoxContainer2" unique_id=316502220]
+[node name="Settings" type="Button" parent="Main/Top/HBoxContainer2" unique_id=316502220]
 custom_minimum_size = Vector2(55, 55)
 layout_mode = 2
 theme = ExtResource("2_h2x3y")
@@ -65,21 +67,22 @@ icon = ExtResource("2_1vk3t")
 icon_alignment = 1
 expand_icon = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Main" unique_id=1000020604]
+[node name="HBoxContainer" type="HBoxContainer" parent="Main/Top" unique_id=1000020604]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Main/HBoxContainer" unique_id=485801385]
+[node name="Label" type="Label" parent="Main/Top/HBoxContainer" unique_id=485801385]
 layout_mode = 2
 text = "Level :"
 label_settings = ExtResource("2_hqqrp")
 
-[node name="CurrentLevel" type="Label" parent="Main/HBoxContainer" unique_id=1874090256]
+[node name="CurrentLevel" type="Label" parent="Main/Top/HBoxContainer" unique_id=1874090256]
 unique_name_in_owner = true
 layout_mode = 2
 text = "0"
 label_settings = ExtResource("2_hqqrp")
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="Main/HBoxContainer/CurrentLevel" unique_id=2098568245]
+[node name="LevelParticles" type="CPUParticles2D" parent="Main/Top/HBoxContainer/CurrentLevel" unique_id=2098568245]
+unique_name_in_owner = true
 position = Vector2(14, 36)
 emitting = false
 amount = 20
@@ -102,18 +105,18 @@ scale_amount_max = 0.1
 scale_amount_curve = SubResource("Curve_hqqrp")
 color_ramp = SubResource("Gradient_dgedd")
 
-[node name="BoxContainer" type="BoxContainer" parent="Main/HBoxContainer" unique_id=1031525211]
+[node name="BoxContainer" type="BoxContainer" parent="Main/Top/HBoxContainer" unique_id=1031525211]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ScoreProgress" type="TextureProgressBar" parent="Main" unique_id=1003007789]
+[node name="ScoreProgress" type="TextureProgressBar" parent="Main/Top" unique_id=1003007789]
 unique_name_in_owner = true
 layout_mode = 2
 value = 80.0
 texture_under = SubResource("NoiseTexture2D_lwtm8")
 texture_progress = SubResource("GradientTexture2D_hqqrp")
 
-[node name="Score" type="Label" parent="Main/ScoreProgress" unique_id=1661275889]
+[node name="Score" type="Label" parent="Main/Top/ScoreProgress" unique_id=1661275889]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -126,29 +129,29 @@ label_settings = ExtResource("4_dgedd")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="Main" unique_id=1406380058]
+[node name="HBoxContainer3" type="HBoxContainer" parent="Main/Top" unique_id=1406380058]
 layout_mode = 2
 
-[node name="BoxContainer" type="BoxContainer" parent="Main/HBoxContainer3" unique_id=241516663]
+[node name="BoxContainer" type="BoxContainer" parent="Main/Top/HBoxContainer3" unique_id=241516663]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="Main/HBoxContainer3" unique_id=1271175702]
+[node name="Label" type="Label" parent="Main/Top/HBoxContainer3" unique_id=1271175702]
 layout_mode = 2
 text = "NextBall:"
 label_settings = ExtResource("4_dgedd")
 
-[node name="BoxContainer2" type="BoxContainer" parent="Main/HBoxContainer3" unique_id=807416491]
+[node name="BoxContainer2" type="BoxContainer" parent="Main/Top/HBoxContainer3" unique_id=807416491]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 
-[node name="NextBallRoot" type="Control" parent="Main/HBoxContainer3/BoxContainer2" unique_id=2016928984]
+[node name="NextBallRoot" type="Control" parent="Main/Top/HBoxContainer3/BoxContainer2" unique_id=2016928984]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 
-[node name="NextBall" parent="Main/HBoxContainer3/BoxContainer2/NextBallRoot" unique_id=1929847300 instance=ExtResource("7_h2x3y")]
+[node name="NextBall" parent="Main/Top/HBoxContainer3/BoxContainer2/NextBallRoot" unique_id=1929847300 instance=ExtResource("7_h2x3y")]
 unique_name_in_owner = true
 scale = Vector2(0.3, 0.305)
 collision_layer = 0
@@ -157,6 +160,25 @@ sleeping = true
 lock_rotation = true
 freeze = true
 rank = -1
+
+[node name="Spacer" type="BoxContainer" parent="Main" unique_id=524109626]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Bottom" type="VBoxContainer" parent="Main" unique_id=2068468315]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Main/Bottom" unique_id=1593521784]
+layout_mode = 2
+
+[node name="BoxContainer" type="BoxContainer" parent="Main/Bottom/HBoxContainer" unique_id=931256590]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="Main/Bottom/HBoxContainer" unique_id=116871482]
+layout_mode = 2
+theme = ExtResource("2_h2x3y")
+text = "SHAKE"
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=1290210008]
 layout_mode = 2
@@ -172,5 +194,6 @@ unique_name_in_owner = true
 wait_time = 0.1
 one_shot = true
 
-[connection signal="pressed" from="Main/HBoxContainer2/Settings" to="Main" method="_on_settings_pressed"]
+[connection signal="pressed" from="Main/Top/HBoxContainer2/Settings" to="Main" method="_on_settings_pressed"]
+[connection signal="pressed" from="Main/Bottom/HBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="TimerGameOverMenu" to="Main" method="_on_timer_game_over_menu_timeout"]

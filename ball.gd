@@ -82,7 +82,7 @@ func start_deah():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if death_zone_time >= 0:
+	if death_zone_time >= 0 && self._can_die():
 		death_zone_time += delta
 	$Visuals/VisualAnimRoot.position = Vector2(randf(), randf()) * clampf(death_zone_time / max_time_death_zone, 0., 1.) * 20.
 	$Visuals/VisualAnimRoot/Sprite2D.global_rotation = initial_rotation
@@ -105,7 +105,7 @@ func exited_alive_zone(max_time : float):
 	death_zone_time = 0.
 	max_time_death_zone = max_time
 	
-func game_over(ball : Ball):
+func game_over(_ball : Ball):
 	timer.start(randf_range(0.1, 1.))
 	timer.timeout.connect(start_deah)
 

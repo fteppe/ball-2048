@@ -5,6 +5,7 @@ var ball_scene = load("res://Ball.tscn")
 var is_held : bool = false
 var last_dropped_ball : Ball
 var held_ball : Ball
+@export var locked : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,7 +37,7 @@ func _unhandled_input(event):
 	if event is InputEventMouseButton:
 		if event.pressed && event.button_index == 1:
 			is_held = true
-		if event.is_released() && event.button_index == 1 && is_held:
+		if event.is_released() && event.button_index == 1 && is_held && self.locked == false:
 			is_held = false
 			if held_ball:
 				held_ball.body_entered.connect(ball_collided)
@@ -46,7 +47,7 @@ func _unhandled_input(event):
 				self.remove_child(held_ball)
 				held_ball = null
 				last_dropped_ball.global_position = $SpawnPoint.global_position
-				self.get_parent().add_child(last_dropped_ball)
+				self.get_parent().get_parent().add_child(last_dropped_ball)
 
 func get_held_ball_radius() :
 	if held_ball:

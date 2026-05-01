@@ -3,6 +3,8 @@ extends Control
 static var settings_menu : PackedScene = load("res://UI/SettingsMenu.tscn")
 static var game_over_menu : PackedScene = load("res://UI/GameOverMenu.tscn")
 
+signal shake_screen
+
 var level : int = 0
 var size_ball : int = 0
 
@@ -31,7 +33,7 @@ func _process(delta):
 func _on_level_up(new_level : int):
 	%ScoreProgress.max_value = GameModeBall.get_score_to_reach()
 	%CurrentLevel.text = str(GameModeBall.get_level())
-	$HBoxContainer/CurrentLevel/CPUParticles2D.restart()
+	%LevelParticles.restart()
 
 
 func _on_settings_pressed():
@@ -51,3 +53,8 @@ func _on_timer_game_over_menu_timeout():
 		game_over_menu.set_size_level( size_ball, level)
 		%PopupContainer.add_child(game_over_menu)
 		game_over_menu.name =game_over_name
+
+
+func _on_button_pressed():
+	shake_screen.emit()
+	pass # Replace with function body.

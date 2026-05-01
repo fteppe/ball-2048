@@ -31,6 +31,7 @@ position = Vector2(279, -309)
 shape = SubResource("RectangleShape2D_jvtl2")
 
 [node name="AliveZone" type="Area2D" parent="." unique_id=1271297322]
+process_mode = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AliveZone" unique_id=1694197386]
 position = Vector2(283, 422.5)
