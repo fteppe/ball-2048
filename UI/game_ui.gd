@@ -38,9 +38,11 @@ func _on_level_up(new_level : int):
 	%LevelParticles.restart()
 
 func _update_shake_button():
-	%ShakeButton.text = "SHAKE : " + str(GameModeBall.available_shakes)
-	%ShakeButton.disabled = GameModeBall.available_shakes <= 0
-	%ShakeFlash.play("default")
+	var new_label = "SHAKE : " + str(GameModeBall.available_shakes)
+	if new_label != %ShakeButton.text:
+		%ShakeButton.text = new_label
+		%ShakeButton.disabled = GameModeBall.available_shakes <= 0
+		%ShakeFlash.play("default")
 
 func _on_settings_pressed():
 	var settings_name = "SettingsMenu"

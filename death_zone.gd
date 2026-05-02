@@ -4,6 +4,14 @@ extends Node2D
 func _ready():
 	pass # Replace with function body.
 
+func disable_death_zone():
+	%LockTimer.stop()
+	%DeathZone.monitoring = false
+	
+	
+func enable_death_zone():
+	%LockTimer.start()
+
 
 #in the end it is more of an alive sone than a death zone
 func body_is_out_of_alive_zone(body : Node2D):
@@ -21,3 +29,6 @@ func body_is_in_alive_zone(body):
 func _on_death_zone_body_entered(body):
 	if body is Ball:
 		body.start_deah()
+
+func _enable_death_zone_timeout():
+	%DeathZone.monitoring = true

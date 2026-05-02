@@ -89,6 +89,9 @@ func reset_game_mode():
 	game_is_over = false
 	current_biggest_ball = 0
 	game_over_signal_emitted = false
+	max_rank_reached = 1
+	next_ball_rank = 1
+	available_shakes = 1
 	print("game mode reset")
 
 func _level_up():

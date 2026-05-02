@@ -56,13 +56,13 @@ func _on_game_ui_shake_screen():
 
 func on_start_shake():
 	%BallSpawner.locked = true
-	%DeathZone.process_mode = Node.PROCESS_MODE_DISABLED
+	%DeathZone.disable_death_zone()
 	#Animatablebody isn't as stable as static body so we switch between the two when there is or isn't animation
 	%StaticWalls.process_mode = Node.PROCESS_MODE_DISABLED
 	%DynamicWalls.process_mode = Node.PROCESS_MODE_INHERIT
 
 func on_end_shake():
 	%BallSpawner.locked = false
-	%DeathZone.process_mode = Node.PROCESS_MODE_INHERIT
+	%DeathZone.enable_death_zone()
 	%StaticWalls.process_mode = Node.PROCESS_MODE_INHERIT
 	%DynamicWalls.process_mode = Node.PROCESS_MODE_DISABLED
