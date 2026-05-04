@@ -23,7 +23,7 @@ func _on_return_pressed():
 
 
 func _on_restart_pressed():
-	get_tree().change_scene_to_file("res://MainMap.tscn")
+	GameModeBall.reset_game_mode()
 
 
 func _on_clear_save_pressed():

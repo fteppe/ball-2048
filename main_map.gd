@@ -3,6 +3,10 @@ class_name MainMap
 
 var shake_intensity : float = 0
 
+static func clear_middle_keys_in_track(animation : Animation, track_idx : int):
+	while animation.track_get_key_count(track_idx) > 2:
+		animation.track_remove_key(track_idx, 1)
+
 func generate_shake_anim():
 	var shake_anim : Animation= (%AnimationPlayer.get_animation("screen_shake") as Animation)
 	var animation_track : int = shake_anim.find_track("GameWorld/PlaygroundBalls/ShakeOffsetRoot:position", Animation.TYPE_VALUE)
@@ -10,6 +14,7 @@ func generate_shake_anim():
 	var offset_range = 40.
 	var rotation_range = 0.1
 	if animation_track >= 0:
+		clear_middle_keys_in_track(shake_anim, animation_track)
 		print("generating shake")
 		while key_time < shake_anim.get_length() - 0.3:
 			var offset = Vector2(randf_range(-offset_range, offset_range), randf_range(-offset_range, offset_range))
@@ -18,13 +23,13 @@ func generate_shake_anim():
 	key_time = randf_range(0.2,0.3)
 	animation_track = shake_anim.find_track("GameWorld/PlaygroundBalls/ShakeOffsetRoot:rotation", Animation.TYPE_VALUE)
 	if animation_track:
+		clear_middle_keys_in_track(shake_anim, animation_track)
 		while key_time < shake_anim.get_length() - 0.3:
 			shake_anim.track_insert_key(animation_track, key_time, randf_range(-rotation_range, rotation_range))
 			key_time += randf_range(0.2,0.3)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	GameModeBall.reset_game_mode()
 	GameModeBall.ball_created.connect(ball_created)
 	generate_shake_anim()
 	

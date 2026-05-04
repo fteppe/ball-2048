@@ -23,6 +23,7 @@ colors = PackedColorArray(0.40316767, 0.5405016, 0.9769613, 1, 0.22883809, 0.503
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ltpa0"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lwtm8"]
+width = 64
 height = 40
 noise = SubResource("FastNoiseLite_ltpa0")
 color_ramp = SubResource("Gradient_ltpa0")
@@ -32,18 +33,23 @@ colors = PackedColorArray(0.0067329146, 0.21827388, 0.9402952, 1, 0, 0.34685528,
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_hqqrp"]
 gradient = SubResource("Gradient_lwtm8")
-width = 512
 height = 40
 
 [node name="GameUI" type="MarginContainer" unique_id=1295060589]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -11.0
+offset_right = 11.0
+offset_bottom = -676.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 5
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 5
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 20
 script = ExtResource("1_ltpa0")
 
 [node name="Main" type="VBoxContainer" parent="." unique_id=1322289702]
@@ -51,6 +57,7 @@ layout_mode = 2
 
 [node name="Top" type="VBoxContainer" parent="Main" unique_id=1680881482]
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Main/Top" unique_id=221791337]
 layout_mode = 2
@@ -113,19 +120,32 @@ color_ramp = SubResource("Gradient_dgedd")
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ScoreProgress" type="TextureProgressBar" parent="Main/Top" unique_id=1003007789]
+[node name="CenterContainer" type="CenterContainer" parent="Main/Top" unique_id=289429519]
+layout_mode = 2
+
+[node name="ScoreProgress" type="TextureProgressBar" parent="Main/Top/CenterContainer" unique_id=1003007789]
 unique_name_in_owner = true
 layout_mode = 2
-value = 80.0
+size_flags_vertical = 3
+value = 65.0
+nine_patch_stretch = true
+stretch_margin_left = 430
+stretch_margin_top = 40
 texture_under = SubResource("NoiseTexture2D_lwtm8")
 texture_progress = SubResource("GradientTexture2D_hqqrp")
 
-[node name="Score" type="Label" parent="Main/Top/ScoreProgress" unique_id=1661275889]
+[node name="Score" type="Label" parent="Main/Top/CenterContainer/ScoreProgress" unique_id=1661275889]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.5
+offset_top = -17.5
+offset_right = 33.5
+offset_bottom = 17.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "Score"
@@ -181,6 +201,7 @@ size_flags_horizontal = 3
 
 [node name="ShakeButton" type="Button" parent="Main/Bottom/HBoxContainer" unique_id=116871482]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 theme = ExtResource("2_h2x3y")
 text = "SHAKE : 3"

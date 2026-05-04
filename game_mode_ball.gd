@@ -92,7 +92,7 @@ func reset_game_mode():
 	max_rank_reached = 1
 	next_ball_rank = 1
 	available_shakes = 1
-	print("game mode reset")
+	get_tree().change_scene_to_file("res://MainMap.tscn")
 
 func _level_up():
 	current_score = max(0 , current_score - get_score_to_reach())
